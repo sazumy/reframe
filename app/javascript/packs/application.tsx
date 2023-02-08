@@ -25,8 +25,8 @@ if (SENTRY_DSN) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <App />,
-    document.body.appendChild(document.createElement('div'))
-  )
+  const container = document.createElement('div')
+  container.className = 'rf-container'
+
+  ReactDOM.render(<App />, document.body.appendChild(container))
 })

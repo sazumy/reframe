@@ -1,0 +1,38 @@
+.triangle_wrap
+  padding-bottom: 400px
+  position: absolute
+  overflow: hidden
+  top: 0
+  left: 0
+  width: 100%
+  z-index: -1
+
+.triangle_right
+  position: relative
+  &::after
+    content: ''
+    position: absolute
+    top: 100%
+    left: 50vw
+    width: 0
+    height: 0
+    border-top: 200px solid #004C83 // 変数表示したい
+    border-left: 50vw solid transparent
+    border-right: 50vw solid transparent
+
+.triangle_left
+  position: relative
+  &::after
+    content: ''
+    position: absolute
+    top: 100%
+    left: -50vw
+    width: 0
+    height: 0
+    border-top: 400px solid #FCF7B0 // 変数表示したい
+    border-left: 50vw solid transparent
+    border-right: 80vw solid transparent
+
+.rf-container
+  padding: 1rem
+  width: 100%

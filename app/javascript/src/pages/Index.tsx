@@ -8,12 +8,19 @@ export function Index() {
   if (!loading && currentUser == null)
     return (
       <>
-        <a href="/users/sign_in">Sign in</a>
+        <div className="triangle_wrap">
+          <div className="triangle_right" />
+          <div className="triangle_left" />
+        </div>
+        <a href="/users/sign_in" className="text-zinc-50">
+          Sign in
+        </a>
       </>
     )
   return (
     <>
-      <Link to="/chat">Go to chat</Link>
+      <p>ログイン時のコンテンツがここに表示されます</p>
+      {/* <Link to="/chat">Go to chat</Link> */}
     </>
   )
 }
