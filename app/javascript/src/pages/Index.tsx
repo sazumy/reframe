@@ -12,9 +12,18 @@ export function Index() {
           <div className="triangle_right" />
           <div className="triangle_left" />
         </div>
-        <a href="/users/sign_in" className="text-zinc-50">
-          Sign in
-        </a>
+
+        <div className="flex justify-end">
+          <a href="/users/sign_in" className="text-white">
+            Sign in
+          </a>
+        </div>
+
+        <div className="container">
+          <div className="product-title">
+            <h1 className="text-blue">逆性格診断</h1>
+          </div>
+        </div>
       </>
     )
   return (
