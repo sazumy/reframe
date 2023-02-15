@@ -15,13 +15,15 @@ export function Index() {
 
         <div className="flex justify-end">
           <a href="/users/sign_in" className="text-white">
-            Sign in
+            サインイン
           </a>
         </div>
 
         <div className="container">
           <div className="product-title">
-            <h1 className="text-blue">逆性格診断</h1>
+            <h1 className="product-title__text text-blue font-bold text-6xl">
+              <span className="top-balloon">逆!</span>性格診断
+            </h1>
           </div>
         </div>
       </>
