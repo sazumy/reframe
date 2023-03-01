@@ -21,7 +21,7 @@ export function Index() {
 
         <div className="container">
           <div className="product-title">
-            <h1 className="product-title__text text-blue font-bold text-6xl">
+            <h1 className="product-title__text">
               <span className="top-balloon">逆!</span>性格診断
             </h1>
           </div>
