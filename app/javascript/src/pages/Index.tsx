@@ -47,7 +47,7 @@ export function Index() {
             </div>
           </section>
 
-          <section className="suggested-keywords">
+          <section className="suggested-keywords mb-8">
             <h2>候補の単語</h2>
             <div className="keywords">
               <ul className="keywords__list">
@@ -107,9 +107,23 @@ export function Index() {
             </div>
           </section>
 
-          <div className="submit-button">
+          <section className="submit-button">
             <button className="btn btn-primary btn-lg">診断する</button>
-          </div>
+          </section>
+
+          <section className="illustrations">
+            <ul className="illustrations__list">
+              <li className="illustrations__list--item">
+                <img src="/illust-cat-01.svg" alt="猫のイラスト" />
+              </li>
+              <li className="illustrations__list--item">
+                <img src="/illust-cat-02.svg" alt="猫のイラスト" />
+              </li>
+              <li className="illustrations__list--item">
+                <img src="/illust-cat-03.svg" alt="猫のイラスト" />
+              </li>
+            </ul>
+          </section>
         </div>
       </>
     )

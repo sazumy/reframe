@@ -1,26 +1,16 @@
-.product-title
-  @extend %h1-text
+
+.illustrations__list
   display: flex
-  justify-content: center
-  margin-top: 12vh
-  .product-title__text
-    position: relative
-    .top-balloon
-      background-image: url('/topBalloon.svg')
-      background-size: contain
-      background-repeat: no-repeat
-      color: #fff
-      display: inline-block
-      font-size: rem(88)
-      height: 9rem
-      left: -10rem
-      letter-spacing: normal
-      line-height: 1.1
-      position: absolute
-      text-align: center
-      top: -5rem
-      transform: rotate( -15deg )
-      width: 200px
+  justify-content: space-between
+  .illustrations__list--item
+    align-items: flex-end
+    display: flex
+    &:nth-child(1)
+      width: 110px
+    &:nth-child(2)
+      width: 160px
+    &:nth-child(3)
+      width: 160px
 
 .keywords
   max-height: 160px
@@ -37,6 +27,30 @@
     border-radius: 4px
     display: inline-block
     padding: 4px 8px
+
+.product-title
+  @extend %h1-text
+  display: flex
+  justify-content: center
+  margin-top: 12vh
+  .product-title__text
+    position: relative
+    .top-balloon
+      background-image: url('/top-balloon.svg')
+      background-size: contain
+      background-repeat: no-repeat
+      color: #fff
+      display: inline-block
+      font-size: rem(88)
+      height: 9rem
+      left: -10rem
+      letter-spacing: normal
+      line-height: 1.1
+      position: absolute
+      text-align: center
+      top: -5rem
+      transform: rotate( -15deg )
+      width: 200px
 
 .rf-container
   padding: 1rem 2rem 0 2rem
