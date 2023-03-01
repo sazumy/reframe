@@ -51,58 +51,32 @@ export function Index() {
             <h2>候補の単語</h2>
             <div className="keywords">
               <ul className="keywords__list">
-                <li className="keywords__list--item delete-btn">
-                  適当な長い単語のタグ
-                </li>
-                <li className="keywords__list--item delete-btn">適当なタグ</li>
-                <li className="keywords__list--item delete-btn">
-                  適当な長い単語のタグ
-                </li>
-                <li className="keywords__list--item delete-btn">適当なタグ</li>
-                <li className="keywords__list--item delete-btn">
-                  適当な長い単語のタグ
-                </li>
-                <li className="keywords__list--item delete-btn">適当なタグ</li>
-                <li className="keywords__list--item delete-btn">
-                  適当な長い単語のタグ
-                </li>
-                <li className="keywords__list--item delete-btn">適当なタグ</li>
-                <li className="keywords__list--item delete-btn">
-                  適当な長い単語のタグ
-                </li>
-                <li className="keywords__list--item delete-btn">適当なタグ</li>
-                <li className="keywords__list--item delete-btn">
-                  適当な長い単語のタグ
-                </li>
-                <li className="keywords__list--item delete-btn">適当なタグ</li>
-                <li className="keywords__list--item delete-btn">
-                  適当な長い単語のタグ
-                </li>
-                <li className="keywords__list--item delete-btn">適当なタグ</li>
-                <li className="keywords__list--item delete-btn">
-                  適当な長い単語のタグ
-                </li>
-                <li className="keywords__list--item delete-btn">適当なタグ</li>
-                <li className="keywords__list--item delete-btn">
-                  適当な長い単語のタグ
-                </li>
-                <li className="keywords__list--item delete-btn">適当なタグ</li>
-                <li className="keywords__list--item delete-btn">
-                  適当な長い単語のタグ
-                </li>
-                <li className="keywords__list--item delete-btn">適当なタグ</li>
-                <li className="keywords__list--item delete-btn">
-                  適当な長い単語のタグ
-                </li>
-                <li className="keywords__list--item delete-btn">適当なタグ</li>
-                <li className="keywords__list--item delete-btn">
-                  適当な長い単語のタグ
-                </li>
-                <li className="keywords__list--item delete-btn">適当なタグ</li>
-                <li className="keywords__list--item delete-btn">
-                  適当な長い単語のタグ
-                </li>
-                <li className="keywords__list--item delete-btn">適当なタグ</li>
+                <li className="keywords__list--item">適当な長い単語のタグ</li>
+                <li className="keywords__list--item">適当なタグ</li>
+                <li className="keywords__list--item">適当な長い単語のタグ</li>
+                <li className="keywords__list--item">適当なタグ</li>
+                <li className="keywords__list--item">適当な長い単語のタグ</li>
+                <li className="keywords__list--item">適当なタグ</li>
+                <li className="keywords__list--item">適当な長い単語のタグ</li>
+                <li className="keywords__list--item">適当なタグ</li>
+                <li className="keywords__list--item">適当な長い単語のタグ</li>
+                <li className="keywords__list--item">適当なタグ</li>
+                <li className="keywords__list--item">適当な長い単語のタグ</li>
+                <li className="keywords__list--item">適当なタグ</li>
+                <li className="keywords__list--item">適当な長い単語のタグ</li>
+                <li className="keywords__list--item">適当なタグ</li>
+                <li className="keywords__list--item">適当な長い単語のタグ</li>
+                <li className="keywords__list--item">適当なタグ</li>
+                <li className="keywords__list--item">適当な長い単語のタグ</li>
+                <li className="keywords__list--item">適当なタグ</li>
+                <li className="keywords__list--item">適当な長い単語のタグ</li>
+                <li className="keywords__list--item">適当なタグ</li>
+                <li className="keywords__list--item">適当な長い単語のタグ</li>
+                <li className="keywords__list--item">適当なタグ</li>
+                <li className="keywords__list--item">適当な長い単語のタグ</li>
+                <li className="keywords__list--item">適当なタグ</li>
+                <li className="keywords__list--item">適当な長い単語のタグ</li>
+                <li className="keywords__list--item">適当なタグ</li>
               </ul>
             </div>
           </section>
