@@ -1,13 +1,8 @@
-$h1_letter_spacing: 2rem
 .product-title
-  color: $blue
+  @extend %h1-text
   display: flex
-  font-size: rem(64)
-  font-weight: bold
   justify-content: center
-  letter-spacing: $h1_letter_spacing
-  margin-right: $h1_letter_spacing * -1
-  margin-top: 15vh
+  margin-top: 12vh
   .product-title__text
     position: relative
     .top-balloon
@@ -27,6 +22,29 @@ $h1_letter_spacing: 2rem
       transform: rotate( -15deg )
       width: 200px
 
+.keywords
+  max-height: 160px
+  overflow-y: scroll
+
+.keywords__list
+  display: flex
+  gap: 16px
+  flex-wrap: wrap
+  justify-content: center
+  white-space: nowrap
+  .keywords__list--item
+    background-color: $yellow
+    border-radius: 4px
+    display: inline-block
+    padding: 4px 8px
+
+.rf-container
+  padding: 1rem 2rem 0 2rem
+  width: 100%
+
+.submit-button
+  display: flex
+  justify-content: center
 
 .triangle_wrap
   padding-bottom: 400px
@@ -46,7 +64,7 @@ $h1_letter_spacing: 2rem
     left: 50vw
     width: 0
     height: 0
-    border-top: 200px solid #004C83 // 変数表示したい
+    border-top: 200px solid $blue
     border-left: 50vw solid transparent
     border-right: 50vw solid transparent
 
@@ -59,10 +77,6 @@ $h1_letter_spacing: 2rem
     left: -50vw
     width: 0
     height: 0
-    border-top: 400px solid #FCF7B0 // 変数表示したい
+    border-top: 400px solid $yellow
     border-left: 50vw solid transparent
     border-right: 80vw solid transparent
-
-.rf-container
-  padding: 1rem 2rem 0 2rem
-  width: 100%

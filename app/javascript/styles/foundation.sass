@@ -1,5 +1,40 @@
+// 変数・sass関数・mixinなどがここに入ります
+
 $blue: #004C83
+$yellow: #FCF7B0
+$white: #ffffff
 
 $base-font-size: 16
 @function rem($pixels, $context: $base-font-size)
   @return $pixels / $context * 1rem
+
+%btn-base
+  border-radius: 4px
+  padding: 4px 8px
+
+%title-text-base
+  color: $blue
+  font-weight: bold
+
+%h1-text
+  $h1_letter_spacing: 2rem
+  @extend %title-text-base
+  font-size: rem(64)
+  letter-spacing: $h1_letter_spacing
+  margin-right: $h1_letter_spacing * -1
+  text-align: center
+
+%h2-text
+  @extend %title-text-base
+  font-size: rem(16)
+  margin-bottom: 16px
+
+h1, .h1
+  @extend %h1-text
+
+h2, .h2
+  @extend %h2-text
+  text-align: center
+
+section
+  margin-bottom: 24px

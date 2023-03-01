@@ -1,0 +1,16 @@
+.btn
+  @extend %btn-base
+  &.btn-primary
+    background-color: $blue
+    color: $white
+    &:hover
+      background-color: lighten($blue, 10%)
+  &.btn-lg
+    min-width: 150px
+
+.container-
+  $sizes: (sm: 50, md: 75, lg: 90, full: 100)
+  @each $key, $size in $sizes
+    &#{$key}
+      margin: 0 auto
+      width: #{percentage($size * 0.01)}
