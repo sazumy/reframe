@@ -54,6 +54,7 @@ services:
       ['sh', '-c', 'rm -rf public/packs/* || true && bin/webpack-dev-server']
     depends_on: []
     environment:
+      NODE_OPTIONS: --openssl-legacy-provider
       LANG: C.UTF-8
       BUNDLE_PATH: vendor/bundle
       WEBPACKER_DEV_SERVER_HOST: 0.0.0.0

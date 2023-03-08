@@ -1,4 +1,4 @@
-FROM node:12 as node
+FROM node:18 as node
 FROM ruby:2.7.1
 
 RUN apt-get update -qq \
