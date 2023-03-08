@@ -7,7 +7,7 @@ $white: #ffffff
 
 $base-font-size: 16
 @function rem($pixels, $context: $base-font-size)
-  @return $pixels / $context * 1rem
+  @return calc($pixels / $context * 1rem)
 
 %btn-base
   border-radius: 4px
