@@ -54,7 +54,7 @@
     "check": "lint;tsc"
   },
   "devDependencies": {
-    "@prettier/plugin-ruby": "^2.0.0-rc4",
+    "@prettier/plugin-ruby": "^3.2.2",
     "@swc/core": "^1.2.84",
     "@swc/jest": "^0.2.2",
     "@testing-library/jest-dom": "^5.14.1",
