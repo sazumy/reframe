@@ -22,6 +22,4 @@ RUN bundle install
 
 COPY . .
 
-ENV NODE_OPTIONS="--openssl-legacy-provider"
-
 CMD ["/bin/sh", "-c", "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"]
