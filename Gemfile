@@ -49,8 +49,8 @@ group :development do
   gem 'letter_opener_web'
   gem 'listen', '~> 3.2'
   gem 'rails-erd'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.1.0'
+  gem 'spring', '>= 3.0.0'
   gem 'web-console', '>= 3.3.0'
 end
 
