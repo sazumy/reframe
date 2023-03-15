@@ -18,7 +18,7 @@ WORKDIR /usr/src/app
 
 COPY Gemfile /usr/src/app/Gemfile
 COPY Gemfile.lock /usr/src/app/Gemfile.lock
-RUN gem install bundler -v 2.3.25 && bundle _2.3.25_ install
+RUN bundle install
 
 COPY . .
 
