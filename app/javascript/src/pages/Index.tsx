@@ -1,11 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { useCurrentUser } from '@/src/hooks/currentUser'
+// import { useCurrentUser } from '@/src/hooks/currentUser'
+import { useNegativeWordsQuery } from '@/graphql/generated'
 
 export function Index() {
-  const { currentUser, loading } = useCurrentUser()
-  if (!loading && currentUser == null)
+  // const { currentUser, loading } = useCurrentUser()
+  const { data, loading, error } = useNegativeWordsQuery()
+
+  const negativeWords = data?.negativeWords.nodes
+  if (!loading && negativeWords !== null)
     return (
       <>
         <div className="triangle_wrap">
@@ -51,32 +55,13 @@ export function Index() {
             <h2>候補の単語</h2>
             <div className="keywords">
               <ul className="keywords__list">
-                <li className="keywords__list--item">適当な長い単語のタグ</li>
-                <li className="keywords__list--item">適当なタグ</li>
-                <li className="keywords__list--item">適当な長い単語のタグ</li>
-                <li className="keywords__list--item">適当なタグ</li>
-                <li className="keywords__list--item">適当な長い単語のタグ</li>
-                <li className="keywords__list--item">適当なタグ</li>
-                <li className="keywords__list--item">適当な長い単語のタグ</li>
-                <li className="keywords__list--item">適当なタグ</li>
-                <li className="keywords__list--item">適当な長い単語のタグ</li>
-                <li className="keywords__list--item">適当なタグ</li>
-                <li className="keywords__list--item">適当な長い単語のタグ</li>
-                <li className="keywords__list--item">適当なタグ</li>
-                <li className="keywords__list--item">適当な長い単語のタグ</li>
-                <li className="keywords__list--item">適当なタグ</li>
-                <li className="keywords__list--item">適当な長い単語のタグ</li>
-                <li className="keywords__list--item">適当なタグ</li>
-                <li className="keywords__list--item">適当な長い単語のタグ</li>
-                <li className="keywords__list--item">適当なタグ</li>
-                <li className="keywords__list--item">適当な長い単語のタグ</li>
-                <li className="keywords__list--item">適当なタグ</li>
-                <li className="keywords__list--item">適当な長い単語のタグ</li>
-                <li className="keywords__list--item">適当なタグ</li>
-                <li className="keywords__list--item">適当な長い単語のタグ</li>
-                <li className="keywords__list--item">適当なタグ</li>
-                <li className="keywords__list--item">適当な長い単語のタグ</li>
-                <li className="keywords__list--item">適当なタグ</li>
+                {negativeWords?.map((negativeWord) => {
+                  return (
+                    <li className="keywords__list--item">
+                      {negativeWord?.content}
+                    </li>
+                  )
+                })}
               </ul>
             </div>
           </section>
