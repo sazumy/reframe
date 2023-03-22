@@ -6,6 +6,12 @@ module Types
       context[:current_user]
     end
 
+    field :users, Types::Objects::NegativeWordType.connection_type, null: false
+
+    def negative_words(page: nil, items: nil)
+      NegativeWord.all
+    end
+
     field :user, Types::Objects::UserType, null: true do
       argument :id, ID, required: true
     end

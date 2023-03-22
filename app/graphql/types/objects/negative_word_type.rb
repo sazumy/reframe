@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Types
-  class NegativeWordType < Types::BaseObject
+  class Objects::NegativeWordType < Types::BaseObject
     field :id, ID, null: false
     field :content, String, null: false
     field :kana, String, null: false
