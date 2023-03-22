@@ -1,14 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 // import { useCurrentUser } from '@/src/hooks/currentUser'
 import { useNegativeWordsQuery } from '@/graphql/generated'
+import { KeywordBox } from '@/src/components/molecules/Keywords/KeywordBox'
 
 export function Index() {
   // const { currentUser, loading } = useCurrentUser()
   const { data, loading, error } = useNegativeWordsQuery()
 
+  if (error) return <></>
   const negativeWords = data?.negativeWords.nodes
+
   if (!loading && negativeWords !== null)
     return (
       <>
@@ -53,17 +56,7 @@ export function Index() {
 
           <section className="suggested-keywords mb-8">
             <h2>候補の単語</h2>
-            <div className="keywords">
-              <ul className="keywords__list">
-                {negativeWords?.map((negativeWord) => {
-                  return (
-                    <li className="keywords__list--item">
-                      {negativeWord?.content}
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
+            {negativeWords && <KeywordBox words={negativeWords} />}
           </section>
 
           <section className="submit-button">
