@@ -43,7 +43,7 @@ services:
   generator:
     <<: *app
     ports: []
-    command: echo 'generate is exited!'
+    command: ['sh', '-c', 'yarn generate --watch "app/**/graphql/**"']
     depends_on:
       - app
   webpacker:
