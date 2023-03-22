@@ -1,5 +1,3 @@
-require 'csv'
-
 Dir.glob("#{Rails.root}/db/fixtures/dev/csv/negative_words.csv") do |f|
   CSV
     .read(f, headers: true)
