@@ -11,7 +11,7 @@ module Types
           null: false
 
     def negative_words(page: nil, items: nil)
-      NegativeWord.all
+      NegativeWord.order(kana: :asc)
     end
 
     field :user, Types::Objects::UserType, null: true do
