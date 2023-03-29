@@ -1,4 +1,4 @@
-Dir.glob("#{Rails.root}/db/fixtures/dev/csv/negative_words.csv") do |f|
+Dir.glob("#{Rails.root}/db/fixtures/csv/negative_words.csv") do |f|
   CSV
     .read(f, headers: true)
     .each do |row|
