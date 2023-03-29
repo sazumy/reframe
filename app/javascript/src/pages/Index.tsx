@@ -25,15 +25,17 @@ export function Index() {
     const keyword = event.target.value
 
     if (!keyword) return
-    setQ({ kana: keyword, content: keyword })
-    getResults({ variables: { q } })
+
+    setTimeout(() => {
+      setQ({ kana: keyword, content: keyword })
+    }, 700)
   }
 
   useEffect(() => {
     getResults({
       variables: { q },
     })
-  }, [])
+  }, [q])
 
   if (error) return <></>
   const negativeWords = data?.negativeWordSearchResults?.nodes
