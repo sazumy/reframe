@@ -22,6 +22,10 @@ gem 'sentry-sidekiq'
 gem 'slim-rails'
 gem 'sidekiq'
 gem 'webpacker'
+gem 'net-http'
+# gem 'net-smtp'
+# gem 'net-imap'
+# gem 'uri', '0.10.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
