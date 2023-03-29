@@ -12,7 +12,11 @@ export const KeywordBox: React.VFC<{ words: Word[] }> = ({ words }) => {
       <ul className="keywords__list">
         {words.map((word: Word) => {
           if (!word) return
-          return <li className="keywords__list--item">{word.content}</li>
+          return (
+            <li className="keywords__list--item" key={word.id}>
+              {word.content}
+            </li>
+          )
         })}
       </ul>
     </div>
