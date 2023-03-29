@@ -1,0 +1,7 @@
+query negativeWordSearchResults($q: NegativeWordSearchParams) {
+  negativeWordSearchResults(q: $q) {
+    nodes {
+      ...NegativeWordItem
+    }
+  }
+}

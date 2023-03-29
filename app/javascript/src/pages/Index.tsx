@@ -1,16 +1,42 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 // import { Link } from 'react-router-dom'
 
 // import { useCurrentUser } from '@/src/hooks/currentUser'
-import { useNegativeWordsQuery } from '@/graphql/generated'
+import {
+  NegativeWordSearchParams,
+  useNegativeWordSearchResultsLazyQuery,
+} from '@/graphql/generated'
+import { Input } from '@/src/components/atoms'
 import { KeywordBox } from '@/src/components/molecules/Keywords/KeywordBox'
 
 export function Index() {
   // const { currentUser, loading } = useCurrentUser()
-  const { data, loading, error } = useNegativeWordsQuery()
+
+  const [q, setQ] = useState<NegativeWordSearchParams | undefined>(undefined)
+
+  const [getResults, { data, error, loading }] =
+    useNegativeWordSearchResultsLazyQuery({
+      variables: { q },
+      fetchPolicy: 'cache-and-network',
+    })
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault()
+    const keyword = event.target.value
+
+    if (!keyword) return
+    setQ({ kana: keyword, content: keyword })
+    getResults({ variables: { q } })
+  }
+
+  useEffect(() => {
+    getResults({
+      variables: { q },
+    })
+  }, [])
 
   if (error) return <></>
-  const negativeWords = data?.negativeWords.nodes
+  const negativeWords = data?.negativeWordSearchResults?.nodes
 
   if (!loading && negativeWords !== null)
     return (
@@ -35,11 +61,9 @@ export function Index() {
 
           <section className="form__keyword-search">
             <h2>あなたはどんな性格？</h2>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="username"
-              type="text"
+            <Input
               placeholder="おとなしい、真面目、つまらない etc..."
+              onChange={(e) => handleChange(e)}
             />
           </section>
 

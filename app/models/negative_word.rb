@@ -9,4 +9,7 @@
 #  updated_at :datetime         not null
 #
 class NegativeWord < ApplicationRecord
+  def self.ransackable_attributes(auth_object = nil)
+    %w[kana content]
+  end
 end

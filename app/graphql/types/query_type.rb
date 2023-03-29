@@ -14,6 +14,11 @@ module Types
       NegativeWord.order(kana: :asc)
     end
 
+    field :negative_word_search_results,
+          resolver: Resolvers::NegativeWordSearchResultsResolver do
+      description 'ネガティブな単語一覧、およびその検索結果'
+    end
+
     field :user, Types::Objects::UserType, null: true do
       argument :id, ID, required: true
     end
