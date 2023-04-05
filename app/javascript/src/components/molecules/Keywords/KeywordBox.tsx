@@ -29,7 +29,9 @@ export const KeywordBox: React.VFC<{
   }, [q])
 
   const handleClick = (word: Word) => {
-    word && setSelectedKeywords([...selectedKeywords, word])
+    if (!selectedKeywords.includes(word)) {
+      setSelectedKeywords([...selectedKeywords, word])
+    }
   }
 
   if (error) return <></>
