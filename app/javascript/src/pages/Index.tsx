@@ -66,6 +66,7 @@ export function Index() {
           <Input
             placeholder="おとなしい、真面目、つまらない etc..."
             onChange={(e) => handleChange(e)}
+            value={q?.content ?? ''}
           />
         </section>
 
