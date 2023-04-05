@@ -37,7 +37,7 @@ export const WordSearch: React.FC = ({ children }) => {
   const negativeWords = data?.negativeWordSearchResults?.nodes
 
   return (
-    <>
+    <div className="main-content">
       <section className="form__keyword-search">
         <h2>あなたはどんな性格？</h2>
         <Input
@@ -66,6 +66,6 @@ export const WordSearch: React.FC = ({ children }) => {
       <section className="submit-button">
         <button className="btn btn-primary btn-lg">診断する</button>
       </section>
-    </>
+    </div>
   )
 }
