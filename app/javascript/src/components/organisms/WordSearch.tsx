@@ -20,6 +20,15 @@ export const WordSearch: React.FC = ({ children }) => {
     }, 700)
   }
 
+  const handleDeleteBtnClick = (clickedWord: Word) => {
+    if (selectedKeywords.includes(clickedWord)) {
+      const newKeywords = selectedKeywords.filter((keyword) => {
+        return keyword !== clickedWord
+      })
+      setSelectedKeywords([...newKeywords])
+    }
+  }
+
   return (
     <div className="main-content">
       <section className="form__keyword-search">
@@ -36,13 +45,14 @@ export const WordSearch: React.FC = ({ children }) => {
         <div className="keywords">
           <ul className="keywords__list">
             {selectedKeywords &&
-              selectedKeywords.map((keyword) => {
+              selectedKeywords.map((word) => {
                 return (
-                  <li
-                    className="keywords__list--item delete-btn"
-                    key={keyword.id}
-                  >
-                    {keyword.content}
+                  <li className="keywords__list--item" key={word.id}>
+                    {word.content}
+                    <span
+                      className="delete-btn"
+                      onClick={() => handleDeleteBtnClick(word)}
+                    />
                   </li>
                 )
               })}

@@ -22,7 +22,9 @@
     border-radius: 4px
     display: inline-block
     padding: 4px 8px
-    &.delete-btn
+    &:hover
+      background-color: darken($yellow, 15%)
+    .delete-btn
       position: relative
       &::after
         $btn-size: 16px
@@ -36,13 +38,12 @@
         display: block
         height: $btn-size
         position: absolute
-        right: calc(-#{$btn-size} / 2)
-        top: calc(-#{$btn-size} / 2)
+        right: calc(-#{$btn-size} + 4px)
+        top: calc(-#{$btn-size} + 4px)
         width: $btn-size
-    &:hover
-      background-color: darken($yellow, 15%)
-      &::after
-        background-color: darken($blue-30, 50%)
+      &:hover
+        &::after
+          background-color: darken($blue-30, 50%)
 
 .product-title
   @extend %h1-text
