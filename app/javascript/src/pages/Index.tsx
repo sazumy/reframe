@@ -7,7 +7,10 @@ import {
   useNegativeWordSearchResultsLazyQuery,
 } from '@/graphql/generated'
 import { Input } from '@/src/components/atoms'
+import { ThreeCats } from '@/src/components/molecules/Illustrations/ThreeCats'
+import { ProductTitle } from '@/src/components/molecules/Headings/ProductTitle'
 import { KeywordBox } from '@/src/components/molecules/Keywords/KeywordBox'
+import { Header } from '@/src/components/organisms/Header/Header'
 
 export function Index() {
   // const { currentUser, loading } = useCurrentUser()
@@ -28,7 +31,7 @@ export function Index() {
 
     setTimeout(() => {
       setQ({ kana: keyword, content: keyword })
-    }, 700)
+    }, 1000)
   }
 
   useEffect(() => {
@@ -48,18 +51,10 @@ export function Index() {
         <div className="triangle_left" />
       </div>
 
-      <div className="flex justify-end">
-        <a href="/users/sign_in" className="text-white">
-          サインイン
-        </a>
-      </div>
+      <Header />
 
       <div className="container-sm">
-        <section className="product-title">
-          <h1 className="product-title__text">
-            <span className="top-balloon">逆!</span>性格診断
-          </h1>
-        </section>
+        <ProductTitle />
 
         <section className="form__keyword-search">
           <h2>あなたはどんな性格？</h2>
@@ -90,19 +85,7 @@ export function Index() {
           <button className="btn btn-primary btn-lg">診断する</button>
         </section>
 
-        <section className="illustrations">
-          <ul className="illustrations__list">
-            <li className="illustrations__list--item">
-              <img src="/illust-cat-01.svg" alt="猫のイラスト" />
-            </li>
-            <li className="illustrations__list--item">
-              <img src="/illust-cat-02.svg" alt="猫のイラスト" />
-            </li>
-            <li className="illustrations__list--item">
-              <img src="/illust-cat-03.svg" alt="猫のイラスト" />
-            </li>
-          </ul>
-        </section>
+        <ThreeCats />
       </div>
     </>
   )
