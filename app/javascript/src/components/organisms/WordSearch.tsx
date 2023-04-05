@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
-import {
-  NegativeWordSearchParams,
-  useNegativeWordSearchResultsLazyQuery,
-} from '@/graphql/generated'
+import { NegativeWordSearchParams } from '@/graphql/generated'
 import { Input } from '@/src/components/atoms'
 import { KeywordBox } from '@/src/components/molecules/Keywords/KeywordBox'
 export const WordSearch: React.FC = ({ children }) => {
   const [q, setQ] = useState<NegativeWordSearchParams | undefined>(undefined)
-
-  const [getResults, { data, error, loading }] =
-    useNegativeWordSearchResultsLazyQuery({
-      variables: { q },
-      fetchPolicy: 'cache-and-network',
-    })
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault()
@@ -23,18 +14,8 @@ export const WordSearch: React.FC = ({ children }) => {
 
     setTimeout(() => {
       setQ({ kana: keyword, content: keyword })
-    }, 1000)
+    }, 700)
   }
-
-  useEffect(() => {
-    getResults({
-      variables: { q },
-    })
-  }, [q])
-
-  if (error) return <></>
-  if (loading) return <>ローディング中...</>
-  const negativeWords = data?.negativeWordSearchResults?.nodes
 
   return (
     <div className="main-content">
@@ -60,7 +41,7 @@ export const WordSearch: React.FC = ({ children }) => {
 
       <section className="suggested-keywords mb-8">
         <h2>候補の単語</h2>
-        {negativeWords && <KeywordBox words={negativeWords} />}
+        <KeywordBox q={q} />
       </section>
 
       <section className="submit-button">
