@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 
 import { NegativeWordSearchParams } from '@/graphql/generated'
 import { Input } from '@/src/components/atoms'
-import { KeywordBox } from '@/src/components/molecules/Keywords/KeywordBox'
+import {
+  KeywordBox,
+  Word,
+} from '@/src/components/molecules/Keywords/KeywordBox'
 export const WordSearch: React.FC = ({ children }) => {
   const [q, setQ] = useState<NegativeWordSearchParams | undefined>(undefined)
-  const [selectedKeywords, setSelectedKeywords] = useState<string[]>([])
+  const [selectedKeywords, setSelectedKeywords] = useState<Word[]>([])
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault()
     const keyword = event.target.value
@@ -35,8 +38,11 @@ export const WordSearch: React.FC = ({ children }) => {
             {selectedKeywords &&
               selectedKeywords.map((keyword) => {
                 return (
-                  <li className="keywords__list--item delete-btn" key={keyword}>
-                    {keyword}
+                  <li
+                    className="keywords__list--item delete-btn"
+                    key={keyword.id}
+                  >
+                    {keyword.content}
                   </li>
                 )
               })}

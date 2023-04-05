@@ -5,16 +5,16 @@ import {
   useNegativeWordSearchResultsLazyQuery,
 } from '@/graphql/generated'
 
-type Word = {
+export type Word = {
   id: string
   content: string
   kana: string
-} | null
+}
 
 export const KeywordBox: React.VFC<{
   q?: NegativeWordSearchParams
-  selectedKeywords: string[]
-  setSelectedKeywords: React.Dispatch<React.SetStateAction<string[]>>
+  selectedKeywords: Word[]
+  setSelectedKeywords: React.Dispatch<React.SetStateAction<Word[]>>
 }> = ({ q, selectedKeywords, setSelectedKeywords }) => {
   const [getResults, { data, error, loading }] =
     useNegativeWordSearchResultsLazyQuery({
@@ -29,7 +29,7 @@ export const KeywordBox: React.VFC<{
   }, [q])
 
   const handleClick = (word: Word) => {
-    word && setSelectedKeywords([...selectedKeywords, word.content])
+    word && setSelectedKeywords([...selectedKeywords, word])
   }
 
   if (error) return <></>
@@ -41,7 +41,7 @@ export const KeywordBox: React.VFC<{
     <div className="keywords">
       <ul className="keywords__list">
         {negativeWords &&
-          negativeWords.map((word: Word) => {
+          negativeWords?.map((word: Word | null) => {
             if (!word) return
             return (
               <li
