@@ -11,9 +11,11 @@ type Word = {
   kana: string
 } | null
 
-export const KeywordBox: React.VFC<{ q?: NegativeWordSearchParams }> = ({
-  q,
-}) => {
+export const KeywordBox: React.VFC<{
+  q?: NegativeWordSearchParams
+  selectedKeywords: string[]
+  setSelectedKeywords: React.Dispatch<React.SetStateAction<string[]>>
+}> = ({ q, selectedKeywords, setSelectedKeywords }) => {
   const [getResults, { data, error, loading }] =
     useNegativeWordSearchResultsLazyQuery({
       variables: { q },
@@ -25,6 +27,10 @@ export const KeywordBox: React.VFC<{ q?: NegativeWordSearchParams }> = ({
       variables: { q },
     })
   }, [q])
+
+  const handleClick = (word: Word) => {
+    word && setSelectedKeywords([...selectedKeywords, word.content])
+  }
 
   if (error) return <></>
   if (loading) return <>ローディング中...</>
@@ -38,7 +44,11 @@ export const KeywordBox: React.VFC<{ q?: NegativeWordSearchParams }> = ({
           negativeWords.map((word: Word) => {
             if (!word) return
             return (
-              <li className="keywords__list--item" key={word.id}>
+              <li
+                className="keywords__list--item"
+                onClick={() => handleClick(word)}
+                key={word.id}
+              >
                 {word.content}
               </li>
             )

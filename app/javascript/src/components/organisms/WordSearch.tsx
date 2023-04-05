@@ -5,11 +5,7 @@ import { Input } from '@/src/components/atoms'
 import { KeywordBox } from '@/src/components/molecules/Keywords/KeywordBox'
 export const WordSearch: React.FC = ({ children }) => {
   const [q, setQ] = useState<NegativeWordSearchParams | undefined>(undefined)
-  const [selectedKeywords, setSelectedKeywords] = useState([
-    'あああ',
-    'いいい',
-    'ううう',
-  ])
+  const [selectedKeywords, setSelectedKeywords] = useState<string[]>([])
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault()
     const keyword = event.target.value
@@ -50,7 +46,11 @@ export const WordSearch: React.FC = ({ children }) => {
 
       <section className="suggested-keywords mb-8">
         <h2>候補の単語</h2>
-        <KeywordBox q={q} />
+        <KeywordBox
+          q={q}
+          selectedKeywords={selectedKeywords}
+          setSelectedKeywords={setSelectedKeywords}
+        />
       </section>
 
       <section className="submit-button">
