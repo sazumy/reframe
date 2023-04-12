@@ -9,5 +9,9 @@
 require 'csv'
 
 CSV.foreach('db/seeds/csv/negative_words.csv') do |row|
-  NegativeWord.create(content: row[0], kana: row[1], id: row[2])
+  NegativeWord.create!(content: row[0], kana: row[1], id: row[2])
+end
+
+CSV.foreach('db/seeds/csv/positive_words.csv') do |row|
+  PositiveWord.create!(rentai: row[0], feature: row[1], id: row[2])
 end
