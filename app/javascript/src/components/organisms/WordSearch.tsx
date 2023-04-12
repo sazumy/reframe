@@ -34,7 +34,10 @@ export const WordSearch: React.FC = ({ children }) => {
   }
 
   const handleSubmit = () => {
-    history.push('/diagnose')
+    history.push({
+      pathname: '/diagnose',
+      state: selectedKeywords,
+    })
   }
 
   return (
