@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 import { NegativeWordSearchParams } from '@/graphql/generated'
 import { Input } from '@/src/components/atoms'
@@ -6,9 +7,12 @@ import {
   KeywordBox,
   Word,
 } from '@/src/components/molecules/Keywords/KeywordBox'
+
 export const WordSearch: React.FC = ({ children }) => {
   const [q, setQ] = useState<NegativeWordSearchParams | undefined>(undefined)
   const [selectedKeywords, setSelectedKeywords] = useState<Word[]>([])
+  const history = useHistory()
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault()
     const keyword = event.target.value
@@ -27,6 +31,10 @@ export const WordSearch: React.FC = ({ children }) => {
       })
       setSelectedKeywords([...newKeywords])
     }
+  }
+
+  const handleSubmit = () => {
+    history.push('/diagnose')
   }
 
   return (
@@ -70,7 +78,12 @@ export const WordSearch: React.FC = ({ children }) => {
       </section>
 
       <section className="submit-button">
-        <button className="btn btn-primary btn-lg">診断する</button>
+        <button
+          className="btn btn-primary btn-lg"
+          onClick={() => handleSubmit()}
+        >
+          診断する
+        </button>
       </section>
     </div>
   )
