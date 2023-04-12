@@ -6,12 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'csv'
+table_names = %i[negative_words positive_words word_connections]
 
-CSV.foreach('db/seeds/csv/negative_words.csv') do |row|
-  NegativeWord.create!(content: row[0], kana: row[1], id: row[2])
-end
-
-CSV.foreach('db/seeds/csv/positive_words.csv') do |row|
-  PositiveWord.create!(rentai: row[0], feature: row[1], id: row[2])
+table_names.each do |table_name|
+  load(File.join(Rails.root, 'db', 'seeds', "#{table_name}.rb"))
+  puts "#{table_name} seeded..."
 end
