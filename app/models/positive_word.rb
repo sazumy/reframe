@@ -10,5 +10,5 @@
 #
 class PositiveWord < ApplicationRecord
   has_many :word_connections
-  has_many :negative_words, through: word_connections
+  has_many :negative_words, through: :word_connections
 end
