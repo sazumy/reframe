@@ -28,5 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const container = document.createElement('div')
   container.className = 'rf-container'
 
+  const bodyClassName =
+    location.pathname.replace('/', '').length !== 0
+      ? location.pathname.replace('/', '')
+      : 'top-page'
+
+  document.body.classList.add(bodyClassName)
   ReactDOM.render(<App />, document.body.appendChild(container))
 })

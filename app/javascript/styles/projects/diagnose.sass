@@ -1,0 +1,50 @@
+.diagnose
+  background: $blue-30
+
+.diagnose__bottom-content
+  .buttons
+    text-align: center
+    width: 100%
+  .your-keywords
+    @extend %card-base
+    margin-bottom: 24px
+
+.diagnose__content
+  display: grid
+  gap: 16px
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))
+  justify-items: center
+  margin-bottom: 48px
+
+.diagnose__top-content
+  display: flex
+  margin-bottom: 40px
+  width: 100%
+  .diagnose__top-content--title
+    display: flex
+    flex-grow: 1
+    white-space: nowrap
+  .diagnose__top-content--button
+    $icon-size: 32px
+    color: $blue
+    display: block
+    height: $icon-size
+    width: $icon-size
+
+.rephrasing
+  @extend %card-base
+  .rephrasing__content
+    margin-bottom: 32px
+    .rephrasing__content--title
+      .negative-word
+        @include underline($blue-30)
+    .rephrasing__content--text
+      line-height: 2
+      .positive-word
+        @include underline($yellow)
+  .rephrasing__footer
+    .rephrasing__footer--button
+      color: $blue
+      text-align: center
+
+
