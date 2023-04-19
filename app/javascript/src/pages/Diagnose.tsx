@@ -1,17 +1,18 @@
 import Edit from '@material-ui/icons/Edit'
 import ExpandLess from '@material-ui/icons/ExpandLess'
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 
 import { NegativeWord } from '@/graphql/generated'
 import { Input } from '@/src/components/atoms'
 
 export function Diagnose() {
   const location = useLocation()
+  const history = useHistory()
   const selectedKeywords = location.state as NegativeWord[]
 
   const handleAgainBtnClick = () => {
-    console.log('もう一度診断')
+    history.push('/')
   }
 
   const handleSaveBtnClick = () => {
