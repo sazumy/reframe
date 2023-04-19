@@ -3,12 +3,29 @@
   background-size: cover
 
 .diagnose__bottom-content
+  align-items: center
+  display: flex
+  flex-direction: column
   .buttons
     text-align: center
-    width: 100%
   .your-keywords
     @extend %card-base
     margin-bottom: 24px
+    position: relative
+    width: 60%
+    &::before
+      $illustration-size: 200px
+      background-image: url('/illust-cat-04.svg')
+      background-position: center
+      background-repeat: no-repeat
+      background-size: contain
+      content: ""
+      display: block
+      position: absolute
+      left: calc(-#{$illustration-size / 2})
+      top: calc(-#{$illustration-size / 4})
+      height: $illustration-size
+      width: $illustration-size
 
 .diagnose__content
   display: grid
