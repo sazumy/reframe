@@ -5,6 +5,7 @@ import { useLocation, useHistory } from 'react-router-dom'
 
 import { NegativeWord } from '@/graphql/generated'
 import { Input } from '@/src/components/atoms'
+import { CardParaphrase } from '@/src/components/organisms/CardParaphrase'
 
 export function Diagnose() {
   const location = useLocation()
@@ -32,41 +33,7 @@ export function Diagnose() {
 
       <div className="diagnose__content">
         {selectedKeywords.map((keyword) => {
-          return (
-            <div className="rephrasing">
-              <div className="rephrasing__content">
-                <h3 className="rephrasing__content--title">
-                  あなたは
-                  <span className="negative-word">{keyword.content}</span>
-                  のですね。
-                </h3>
-                <div className="rephrasing__content--text">
-                  それはもしかしたら、
-                  <br />
-                  <span className="positive-word">ポジティブな言葉</span>ことの
-                  <br />
-                  証拠なのかもしれません。
-                </div>
-              </div>
-
-              <div className="rephrasing__content">
-                <h3 className="rephrasing__content--title">
-                  <span className="negative-word">{keyword.content}</span>
-                  人は...
-                </h3>
-                <div className="rephrasing__content--text">
-                  事前に考えてから行動するので、行き当たりばったりで実行することはなく、何事も慎重に進めていくことができます。そのため、失敗も少ないです。
-                </div>
-              </div>
-
-              <div className="rephrasing__footer">
-                <div className="rephrasing__footer--button">
-                  <ExpandLess />
-                  <p>閉じる</p>
-                </div>
-              </div>
-            </div>
-          )
+          return <CardParaphrase keyword={keyword} />
         })}
       </div>
 
