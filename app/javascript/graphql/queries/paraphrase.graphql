@@ -1,0 +1,10 @@
+query paraphrase($negativeWordId: ID!) {
+  negativeWord(id: $negativeWordId) {
+    content
+    positiveWords {
+      nodes {
+        ...PositiveWordItem
+      }
+    }
+  }
+}

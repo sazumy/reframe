@@ -144,12 +144,18 @@ export type PositiveWordEdge = {
 export type Query = {
   __typename?: 'Query';
   currentUser?: Maybe<User>;
+  negativeWord?: Maybe<NegativeWord>;
   /** ネガティブな単語一覧、およびその検索結果 */
   negativeWordSearchResults?: Maybe<NegativeWordConnection>;
   negativeWords: NegativeWordConnection;
   positiveWords: PositiveWordConnection;
   user?: Maybe<User>;
   users: UserConnection;
+};
+
+
+export type QueryNegativeWordArgs = {
+  id: Scalars['ID'];
 };
 
 
@@ -265,27 +271,6 @@ export type SayMutation = (
   )> }
 );
 
-export type DiagnoseQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type DiagnoseQuery = (
-  { __typename?: 'Query' }
-  & { negativeWords: (
-    { __typename?: 'NegativeWordConnection' }
-    & { nodes?: Maybe<Array<Maybe<(
-      { __typename?: 'NegativeWord' }
-      & Pick<NegativeWord, 'content'>
-      & { positiveWords: (
-        { __typename?: 'PositiveWordConnection' }
-        & { nodes?: Maybe<Array<Maybe<(
-          { __typename?: 'PositiveWord' }
-          & PositiveWordItemFragment
-        )>>> }
-      ) }
-    )>>> }
-  ) }
-);
-
 export type NegativeWordSearchResultsQueryVariables = Exact<{
   q?: Maybe<NegativeWordSearchParams>;
 }>;
@@ -314,6 +299,26 @@ export type NegativeWordsQuery = (
       & NegativeWordItemFragment
     )>>> }
   ) }
+);
+
+export type ParaphraseQueryVariables = Exact<{
+  negativeWordId: Scalars['ID'];
+}>;
+
+
+export type ParaphraseQuery = (
+  { __typename?: 'Query' }
+  & { negativeWord?: Maybe<(
+    { __typename?: 'NegativeWord' }
+    & Pick<NegativeWord, 'content'>
+    & { positiveWords: (
+      { __typename?: 'PositiveWordConnection' }
+      & { nodes?: Maybe<Array<Maybe<(
+        { __typename?: 'PositiveWord' }
+        & PositiveWordItemFragment
+      )>>> }
+    ) }
+  )> }
 );
 
 export type CurrentUserQueryVariables = Exact<{ [key: string]: never; }>;
@@ -391,50 +396,6 @@ export function useSayMutation(baseOptions?: Apollo.MutationHookOptions<SayMutat
 export type SayMutationHookResult = ReturnType<typeof useSayMutation>;
 export type SayMutationResult = Apollo.MutationResult<SayMutation>;
 export type SayMutationOptions = Apollo.BaseMutationOptions<SayMutation, SayMutationVariables>;
-export const DiagnoseDocument = gql`
-    query diagnose {
-  negativeWords {
-    nodes {
-      content
-      positiveWords {
-        nodes {
-          ...PositiveWordItem
-        }
-      }
-    }
-  }
-}
-    ${PositiveWordItemFragmentDoc}`;
-
-/**
- * __useDiagnoseQuery__
- *
- * To run a query within a React component, call `useDiagnoseQuery` and pass it any options that fit your needs.
- * When your component renders, `useDiagnoseQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useDiagnoseQuery({
- *   variables: {
- *   },
- * });
- */
-export function useDiagnoseQuery(baseOptions?: Apollo.QueryHookOptions<DiagnoseQuery, DiagnoseQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<DiagnoseQuery, DiagnoseQueryVariables>(DiagnoseDocument, options);
-      }
-export function useDiagnoseLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DiagnoseQuery, DiagnoseQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<DiagnoseQuery, DiagnoseQueryVariables>(DiagnoseDocument, options);
-        }
-export type DiagnoseQueryHookResult = ReturnType<typeof useDiagnoseQuery>;
-export type DiagnoseLazyQueryHookResult = ReturnType<typeof useDiagnoseLazyQuery>;
-export type DiagnoseQueryResult = Apollo.QueryResult<DiagnoseQuery, DiagnoseQueryVariables>;
-export function refetchDiagnoseQuery(variables?: DiagnoseQueryVariables) {
-      return { query: DiagnoseDocument, variables: variables }
-    }
 export const NegativeWordSearchResultsDocument = gql`
     query negativeWordSearchResults($q: NegativeWordSearchParams) {
   negativeWordSearchResults(q: $q) {
@@ -513,6 +474,49 @@ export type NegativeWordsLazyQueryHookResult = ReturnType<typeof useNegativeWord
 export type NegativeWordsQueryResult = Apollo.QueryResult<NegativeWordsQuery, NegativeWordsQueryVariables>;
 export function refetchNegativeWordsQuery(variables?: NegativeWordsQueryVariables) {
       return { query: NegativeWordsDocument, variables: variables }
+    }
+export const ParaphraseDocument = gql`
+    query paraphrase($negativeWordId: ID!) {
+  negativeWord(id: $negativeWordId) {
+    content
+    positiveWords {
+      nodes {
+        ...PositiveWordItem
+      }
+    }
+  }
+}
+    ${PositiveWordItemFragmentDoc}`;
+
+/**
+ * __useParaphraseQuery__
+ *
+ * To run a query within a React component, call `useParaphraseQuery` and pass it any options that fit your needs.
+ * When your component renders, `useParaphraseQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useParaphraseQuery({
+ *   variables: {
+ *      negativeWordId: // value for 'negativeWordId'
+ *   },
+ * });
+ */
+export function useParaphraseQuery(baseOptions: Apollo.QueryHookOptions<ParaphraseQuery, ParaphraseQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ParaphraseQuery, ParaphraseQueryVariables>(ParaphraseDocument, options);
+      }
+export function useParaphraseLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ParaphraseQuery, ParaphraseQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ParaphraseQuery, ParaphraseQueryVariables>(ParaphraseDocument, options);
+        }
+export type ParaphraseQueryHookResult = ReturnType<typeof useParaphraseQuery>;
+export type ParaphraseLazyQueryHookResult = ReturnType<typeof useParaphraseLazyQuery>;
+export type ParaphraseQueryResult = Apollo.QueryResult<ParaphraseQuery, ParaphraseQueryVariables>;
+export function refetchParaphraseQuery(variables?: ParaphraseQueryVariables) {
+      return { query: ParaphraseDocument, variables: variables }
     }
 export const CurrentUserDocument = gql`
     query currentUser {

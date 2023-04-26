@@ -6,12 +6,20 @@ module Types
       context[:current_user]
     end
 
+    field :negative_word, Types::Objects::NegativeWordType, null: true do
+      argument :id, ID, required: true
+    end
+
+    def negative_word(id:)
+      Loaders::RecordLoader.for(NegativeWord).load(id)
+    end
+
     field :negative_words,
           Types::Objects::NegativeWordType.connection_type,
           null: false
 
     def negative_words(page: nil, items: nil)
-      NegativeWord.order(kana: :asc)
+      PositiveWord.order(kana: :asc)
     end
 
     field :negative_word_search_results,
