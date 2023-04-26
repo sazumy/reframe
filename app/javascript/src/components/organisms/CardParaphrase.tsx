@@ -14,9 +14,7 @@ export const CardParaphrase: React.FC<Props> = ({ keyword }) => {
       negativeWordId: keyword.id,
     },
   })
-
-  console.log(data?.negativeWord?.positiveWords.nodes)
-
+  const positiveWords = data?.negativeWord?.positiveWords.nodes
   return (
     <div className="rephrasing">
       <div className="rephrasing__content">
@@ -28,8 +26,12 @@ export const CardParaphrase: React.FC<Props> = ({ keyword }) => {
         <div className="rephrasing__content--text">
           それはもしかしたら、
           <br />
-          {data?.negativeWord?.positiveWords.nodes?.map((positiveWord) => {
-            return <span className="positive-word">{positiveWord?.rentai}</span>
+          {positiveWords?.map((positiveWord) => {
+            return (
+              <span className="positive-word" key={positiveWord?.id}>
+                {positiveWord?.rentai}
+              </span>
+            )
           })}
           ことの
           <br />
@@ -42,9 +44,9 @@ export const CardParaphrase: React.FC<Props> = ({ keyword }) => {
           <span className="negative-word">{keyword.content}</span>
           人は...
         </h3>
-        {data?.negativeWord?.positiveWords.nodes?.map((positiveWord) => {
+        {positiveWords?.map((positiveWord) => {
           return (
-            <div className="rephrasing__content--text">
+            <div className="rephrasing__content--text" key={positiveWord?.id}>
               {positiveWord?.feature}
             </div>
           )

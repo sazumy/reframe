@@ -33,7 +33,7 @@ export function Diagnose() {
 
       <div className="diagnose__content">
         {selectedKeywords.map((keyword) => {
-          return <CardParaphrase keyword={keyword} />
+          return <CardParaphrase keyword={keyword} key={keyword.id} />
         })}
       </div>
 
