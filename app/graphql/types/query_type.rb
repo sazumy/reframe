@@ -19,6 +19,14 @@ module Types
       description 'ネガティブな単語一覧、およびその検索結果'
     end
 
+    field :positive_words,
+          Types::Objects::PositiveWordType.connection_type,
+          null: false
+
+    def positive_words(page: nil, items: nil)
+      PositiveWord.order(order: :asc)
+    end
+
     field :user, Types::Objects::UserType, null: true do
       argument :id, ID, required: true
     end

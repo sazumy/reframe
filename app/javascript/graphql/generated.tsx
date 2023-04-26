@@ -56,7 +56,16 @@ export type NegativeWord = {
   createdAt: Scalars['ISO8601DateTime'];
   id: Scalars['ID'];
   kana: Scalars['String'];
+  positiveWords: PositiveWordConnection;
   updatedAt: Scalars['ISO8601DateTime'];
+};
+
+
+export type NegativeWordPositiveWordsArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
 };
 
 /** The connection type for NegativeWord. */
@@ -103,12 +112,42 @@ export type PageInfo = {
   startCursor?: Maybe<Scalars['String']>;
 };
 
+export type PositiveWord = {
+  __typename?: 'PositiveWord';
+  createdAt: Scalars['ISO8601DateTime'];
+  feature?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  rentai?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['ISO8601DateTime'];
+};
+
+/** The connection type for PositiveWord. */
+export type PositiveWordConnection = {
+  __typename?: 'PositiveWordConnection';
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<PositiveWordEdge>>>;
+  /** A list of nodes. */
+  nodes?: Maybe<Array<Maybe<PositiveWord>>>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/** An edge in a connection. */
+export type PositiveWordEdge = {
+  __typename?: 'PositiveWordEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node?: Maybe<PositiveWord>;
+};
+
 export type Query = {
   __typename?: 'Query';
   currentUser?: Maybe<User>;
   /** ネガティブな単語一覧、およびその検索結果 */
   negativeWordSearchResults?: Maybe<NegativeWordConnection>;
   negativeWords: NegativeWordConnection;
+  positiveWords: PositiveWordConnection;
   user?: Maybe<User>;
   users: UserConnection;
 };
@@ -124,6 +163,14 @@ export type QueryNegativeWordSearchResultsArgs = {
 
 
 export type QueryNegativeWordsArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryPositiveWordsArgs = {
   after?: Maybe<Scalars['String']>;
   before?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;
@@ -195,6 +242,11 @@ export type NegativeWordItemFragment = (
   & Pick<NegativeWord, 'id' | 'content' | 'kana'>
 );
 
+export type PositiveWordItemFragment = (
+  { __typename?: 'PositiveWord' }
+  & Pick<PositiveWord, 'id' | 'rentai' | 'feature'>
+);
+
 export type UserItemFragment = (
   { __typename?: 'User' }
   & Pick<User, 'id' | 'email'>
@@ -211,6 +263,27 @@ export type SayMutation = (
     { __typename?: 'SayPayload' }
     & Pick<SayPayload, 'completed'>
   )> }
+);
+
+export type DiagnoseQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type DiagnoseQuery = (
+  { __typename?: 'Query' }
+  & { negativeWords: (
+    { __typename?: 'NegativeWordConnection' }
+    & { nodes?: Maybe<Array<Maybe<(
+      { __typename?: 'NegativeWord' }
+      & Pick<NegativeWord, 'content'>
+      & { positiveWords: (
+        { __typename?: 'PositiveWordConnection' }
+        & { nodes?: Maybe<Array<Maybe<(
+          { __typename?: 'PositiveWord' }
+          & PositiveWordItemFragment
+        )>>> }
+      ) }
+    )>>> }
+  ) }
 );
 
 export type NegativeWordSearchResultsQueryVariables = Exact<{
@@ -272,6 +345,13 @@ export const NegativeWordItemFragmentDoc = gql`
   kana
 }
     `;
+export const PositiveWordItemFragmentDoc = gql`
+    fragment PositiveWordItem on PositiveWord {
+  id
+  rentai
+  feature
+}
+    `;
 export const UserItemFragmentDoc = gql`
     fragment UserItem on User {
   id
@@ -311,6 +391,50 @@ export function useSayMutation(baseOptions?: Apollo.MutationHookOptions<SayMutat
 export type SayMutationHookResult = ReturnType<typeof useSayMutation>;
 export type SayMutationResult = Apollo.MutationResult<SayMutation>;
 export type SayMutationOptions = Apollo.BaseMutationOptions<SayMutation, SayMutationVariables>;
+export const DiagnoseDocument = gql`
+    query diagnose {
+  negativeWords {
+    nodes {
+      content
+      positiveWords {
+        nodes {
+          ...PositiveWordItem
+        }
+      }
+    }
+  }
+}
+    ${PositiveWordItemFragmentDoc}`;
+
+/**
+ * __useDiagnoseQuery__
+ *
+ * To run a query within a React component, call `useDiagnoseQuery` and pass it any options that fit your needs.
+ * When your component renders, `useDiagnoseQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useDiagnoseQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useDiagnoseQuery(baseOptions?: Apollo.QueryHookOptions<DiagnoseQuery, DiagnoseQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<DiagnoseQuery, DiagnoseQueryVariables>(DiagnoseDocument, options);
+      }
+export function useDiagnoseLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DiagnoseQuery, DiagnoseQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<DiagnoseQuery, DiagnoseQueryVariables>(DiagnoseDocument, options);
+        }
+export type DiagnoseQueryHookResult = ReturnType<typeof useDiagnoseQuery>;
+export type DiagnoseLazyQueryHookResult = ReturnType<typeof useDiagnoseLazyQuery>;
+export type DiagnoseQueryResult = Apollo.QueryResult<DiagnoseQuery, DiagnoseQueryVariables>;
+export function refetchDiagnoseQuery(variables?: DiagnoseQueryVariables) {
+      return { query: DiagnoseDocument, variables: variables }
+    }
 export const NegativeWordSearchResultsDocument = gql`
     query negativeWordSearchResults($q: NegativeWordSearchParams) {
   negativeWordSearchResults(q: $q) {

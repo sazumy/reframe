@@ -14,6 +14,9 @@ class Types::Objects::NegativeWordType < Types::BaseObject
   field :id, ID, null: false
   field :content, String, null: false
   field :kana, String, null: false
+  field :positive_words,
+        Types::Objects::PositiveWordType.connection_type,
+        null: false
   field :created_at, GraphQL::Types::ISO8601DateTime, null: false
   field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
 end

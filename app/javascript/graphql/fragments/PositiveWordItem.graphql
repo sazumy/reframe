@@ -1,0 +1,5 @@
+fragment PositiveWordItem on PositiveWord {
+  id
+  rentai
+  feature
+}
