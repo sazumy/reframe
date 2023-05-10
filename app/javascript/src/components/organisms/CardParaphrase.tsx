@@ -1,8 +1,9 @@
 import { ExpandLess } from '@material-ui/icons'
 import React from 'react'
+
 // NOTE: Wordタイプ、ここにあって良いのだろうか...?
-import { Word } from '@/src/components/molecules/Keywords/KeywordBox'
 import { useParaphraseQuery } from '@/graphql/generated'
+import { Word } from '@/src/components/molecules/Keywords/KeywordBox'
 
 type Props = {
   keyword: Word
@@ -15,6 +16,11 @@ export const CardParaphrase: React.FC<Props> = ({ keyword }) => {
     },
   })
   const positiveWords = data?.negativeWord?.positiveWords.nodes
+
+  // TODO: エラーとローディング中の表現追加
+  if (error) return <>エラーが発生しています</>
+  if (loading) return <>ローディング中...</>
+
   return (
     <div className="rephrasing">
       <div className="rephrasing__content">
