@@ -1,5 +1,5 @@
-import { ExpandLess } from '@material-ui/icons'
-import React from 'react'
+import { ExpandLess, ExpandMore } from '@material-ui/icons'
+import React, { useState } from 'react'
 
 // NOTE: Wordタイプ、ここにあって良いのだろうか...?
 import { useParaphraseQuery } from '@/graphql/generated'
@@ -15,7 +15,15 @@ export const CardParaphrase: React.FC<Props> = ({ keyword }) => {
       negativeWordId: keyword.id,
     },
   })
+  const [showFeature, setShowFeature] = useState<boolean>(false)
   const positiveWords = data?.negativeWord?.positiveWords.nodes
+
+  const handleExpandMoreButtonClick = () => {
+    setShowFeature(true)
+  }
+  const handleExpandLessButtonClick = () => {
+    setShowFeature(false)
+  }
 
   // TODO: エラーとローディング中の表現追加
   if (error) return <>エラーが発生しています</>
@@ -45,26 +53,48 @@ export const CardParaphrase: React.FC<Props> = ({ keyword }) => {
         </div>
       </div>
 
-      <div className="rephrasing__content">
-        <h3 className="rephrasing__content--title">
-          <span className="negative-word">{keyword.content}</span>
-          人は...
-        </h3>
-        {positiveWords?.map((positiveWord) => {
-          return (
-            <div className="rephrasing__content--text" key={positiveWord?.id}>
-              {positiveWord?.feature}
-            </div>
-          )
-        })}
-      </div>
-
-      <div className="rephrasing__footer">
-        <div className="rephrasing__footer--button">
-          <ExpandLess />
-          <p>閉じる</p>
+      {!showFeature && (
+        <div
+          className="rephrasing__expand-btn"
+          onClick={() => handleExpandMoreButtonClick()}
+        >
+          <p>
+            {keyword.content}人の
+            <br />
+            良いところをもっと見る
+          </p>
+          <ExpandMore />
         </div>
-      </div>
+      )}
+
+      {showFeature && (
+        <>
+          <div className="rephrasing__content">
+            <h3 className="rephrasing__content--title">
+              <span className="negative-word">{keyword.content}</span>
+              人は...
+            </h3>
+            {positiveWords?.map((positiveWord) => {
+              return (
+                <div
+                  className="rephrasing__content--text"
+                  key={positiveWord?.id}
+                >
+                  {positiveWord?.feature}
+                </div>
+              )
+            })}
+          </div>
+
+          <div
+            className="rephrasing__expand-btn"
+            onClick={() => handleExpandLessButtonClick()}
+          >
+            <ExpandLess />
+            <p>閉じる</p>
+          </div>
+        </>
+      )}
     </div>
   )
 }
