@@ -6,12 +6,14 @@ import React from 'react'
 import { LayoutTriangle } from '@/src/components/layouts/LayoutTriangle'
 import { Container } from '@/src/components/organisms/Container'
 import { WordSearch } from '@/src/components/organisms/WordSearch'
+import { Header } from '@/src/components/organisms/Header/Header'
 
 export function Index() {
   // const { currentUser, loading } = useCurrentUser()
 
   return (
     <LayoutTriangle>
+      <Header />
       <Container>
         <WordSearch />
       </Container>

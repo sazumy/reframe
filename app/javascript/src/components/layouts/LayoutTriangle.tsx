@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { Header } from '@/src/components/organisms/Header/Header'
-
 export const LayoutTriangle: React.FC = ({ children }) => {
   return (
     <>
@@ -9,8 +7,6 @@ export const LayoutTriangle: React.FC = ({ children }) => {
         <div className="triangle_right" />
         <div className="triangle_left" />
       </div>
-
-      <Header />
 
       {children}
     </>
