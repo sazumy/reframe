@@ -148,7 +148,6 @@ export type Query = {
   /** ネガティブな単語一覧、およびその検索結果 */
   negativeWordSearchResults?: Maybe<NegativeWordConnection>;
   negativeWords: NegativeWordConnection;
-  positiveWords: PositiveWordConnection;
   user?: Maybe<User>;
   users: UserConnection;
 };
@@ -169,14 +168,6 @@ export type QueryNegativeWordSearchResultsArgs = {
 
 
 export type QueryNegativeWordsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryPositiveWordsArgs = {
   after?: Maybe<Scalars['String']>;
   before?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;

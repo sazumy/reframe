@@ -5,6 +5,7 @@ import { useLocation, useHistory } from 'react-router-dom'
 import { NegativeWord } from '@/graphql/generated'
 import { Input } from '@/src/components/atoms'
 import { CardParaphrase } from '@/src/components/organisms/CardParaphrase'
+import { generateYourKeywords } from '@/src/hooks/generateYourKeywords'
 
 export function Diagnose() {
   const location = useLocation()
@@ -19,6 +20,9 @@ export function Diagnose() {
     console.log('結果を保存')
   }
 
+  const yourKeywords = generateYourKeywords({
+    negativeWords: selectedKeywords,
+  })
   return (
     <>
       <h1>診断結果</h1>
@@ -40,23 +44,14 @@ export function Diagnose() {
         <div className="your-keywords">
           <h2>あなたへのキーワード</h2>
           <ul className="keywords__list">
-            <li className="keywords__list--item">キーワード</li>
-            <li className="keywords__list--item">キーワード</li>
-            <li className="keywords__list--item">キーワード</li>
-            <li className="keywords__list--item">キーワード</li>
-            {/* {positiveWords &&
-              positiveWords?.map((word: Word | null) => {
-                if (!word) return
-                return (
-                  <li
-                    className="keywords__list--item"
-                    onClick={() => handleClick(word)}
-                    key={word.id}
-                  >
-                    {word.content}
-                  </li>
-                )
-              })} */}
+            {yourKeywords.map((word) => {
+              if (!word) return
+              return (
+                <li className="keywords__list--item" key={word.id}>
+                  {word.rentai}
+                </li>
+              )
+            })}
           </ul>
         </div>
         <div className="buttons">
