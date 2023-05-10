@@ -42,12 +42,16 @@
       display: flex
       flex-grow: 1
       white-space: nowrap
+      &.for-display
+        border-bottom: dotted 2px $blue
     .button
       $icon-size: 32px
       color: $blue
       display: block
       height: $icon-size
       width: $icon-size
+      &.disabled
+        color: $blue-30
 
 .rephrasing
   @extend %card-base

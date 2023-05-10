@@ -1,5 +1,5 @@
 import Edit from '@material-ui/icons/Edit'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
 
 import { NegativeWord } from '@/graphql/generated'
@@ -10,8 +10,11 @@ import { generateYourKeywords } from '@/src/hooks/generateYourKeywords'
 export const Result: React.FC = ({ children }) => {
   const location = useLocation()
   const history = useHistory()
-  const selectedKeywords = location.state as NegativeWord[]
 
+  const selectedKeywords = location.state as NegativeWord[]
+  const [diagnoseTitle, setDiagnoseTitle] = useState<string>('')
+  const [showInputForm, setShowInputForm] = useState<boolean>(false)
+  const [enableEditButton, setEnableEditButton] = useState<boolean>(true)
   const handleAgainBtnClick = () => {
     history.push('/')
   }
@@ -20,9 +23,29 @@ export const Result: React.FC = ({ children }) => {
     console.log('結果を保存')
   }
 
+  const handleEditTitleButtonClick = () => {
+    setShowInputForm(true)
+    setEnableEditButton(false)
+  }
+
+  const handleDiagnoseTitleChange = (title: string) => {
+    setTimeout(() => {
+      setDiagnoseTitle(title)
+      setShowInputForm(false)
+      setEnableEditButton(true)
+    }, 2000)
+  }
+
   const yourKeywords = generateYourKeywords({
     negativeWords: selectedKeywords,
   })
+
+  useEffect(() => {
+    const today = new Date().toDateString()
+    const defaultTitle = today + '_逆性格診断'
+    setDiagnoseTitle(defaultTitle)
+  }, [])
+
   return (
     <>
       <div className="diagnose__top-content container-sm">
@@ -30,9 +53,22 @@ export const Result: React.FC = ({ children }) => {
         <div className="diagnose__top-content--form">
           <h2 className="title">
             タイトル：
-            <Input value="2022-04-20_逆性格診断" />
+            {showInputForm ? (
+              <Input
+                className="mr-2"
+                defaultValue={diagnoseTitle}
+                onChange={(event) =>
+                  handleDiagnoseTitleChange(event.target.value)
+                }
+              />
+            ) : (
+              <p className="title for-display">{diagnoseTitle}</p>
+            )}
           </h2>
-          <Edit className="button" />
+          <Edit
+            className={enableEditButton ? 'button' : 'button disabled'}
+            onClick={() => handleEditTitleButtonClick()}
+          />
         </div>
       </div>
 
