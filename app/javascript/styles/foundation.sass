@@ -9,6 +9,11 @@ $base-font-size: 16
 @function rem($pixels, $context: $base-font-size)
   @return calc($pixels / $context * 1rem)
 
+$page-bottom-padding: 3rem
+$page-left-padding: 2rem
+$page-top-padding: 1rem
+
+
 // extend 専用クラス -----------------
 %btn-base
   border-radius: 4px
@@ -56,7 +61,7 @@ section
   margin-bottom: 40px
 
 .rf-container // 全ページ共通の、一番外側のコンテナ
-  padding: 1rem 2rem 0 2rem
+  padding: $page-top-padding 2rem $page-bottom-padding $page-left-padding
   width: 100%
 
 // mixin

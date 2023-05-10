@@ -41,7 +41,7 @@ export const WordSearch: React.FC = ({ children }) => {
   }
 
   return (
-    <div className="main-content">
+    <div className="main-content container-sm">
       <section className="form__keyword-search">
         <h2>あなたはどんな性格？</h2>
         <Input

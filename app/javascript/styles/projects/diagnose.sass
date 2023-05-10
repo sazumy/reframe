@@ -32,18 +32,22 @@
 
 .diagnose__top-content
   display: flex
+  flex-direction: column
   margin-bottom: 40px
-  width: 100%
-  .diagnose__top-content--title
+  .diagnose__top-content--form
     display: flex
-    flex-grow: 1
-    white-space: nowrap
-  .diagnose__top-content--button
-    $icon-size: 32px
-    color: $blue
-    display: block
-    height: $icon-size
-    width: $icon-size
+    justify-content: center !important
+    width: 100%
+    .title
+      display: flex
+      flex-grow: 1
+      white-space: nowrap
+    .button
+      $icon-size: 32px
+      color: $blue
+      display: block
+      height: $icon-size
+      width: $icon-size
 
 .rephrasing
   @extend %card-base

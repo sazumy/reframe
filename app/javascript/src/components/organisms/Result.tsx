@@ -25,13 +25,15 @@ export const Result: React.FC = ({ children }) => {
   })
   return (
     <>
-      <h1>診断結果</h1>
-      <div className="diagnose__top-content">
-        <h2 className="diagnose__top-content--title">
-          タイトル：
-          <Input value="2022-04-20_逆性格診断" />
-        </h2>
-        <Edit className="diagnose__top-content--button" />
+      <div className="diagnose__top-content container-sm">
+        <h1>診断結果</h1>
+        <div className="diagnose__top-content--form">
+          <h2 className="title">
+            タイトル：
+            <Input value="2022-04-20_逆性格診断" />
+          </h2>
+          <Edit className="button" />
+        </div>
       </div>
 
       <div className="diagnose__content">

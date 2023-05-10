@@ -2,7 +2,7 @@ import React from 'react'
 
 export const ThreeCats: React.FC = () => {
   return (
-    <section className="illustrations">
+    <section className="illustrations container-sm">
       <ul className="illustrations__list">
         <li className="illustrations__list--item">
           <img src="/illust-cat-01.svg" alt="猫のイラスト" />
