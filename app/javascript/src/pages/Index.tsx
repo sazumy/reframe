@@ -3,7 +3,7 @@ import React from 'react'
 
 // import { useCurrentUser } from '@/src/hooks/currentUser'
 
-import { Layout } from '@/src/components/layouts/Layout'
+import { LayoutTriangle } from '@/src/components/layouts/LayoutTriangle'
 import { Container } from '@/src/components/organisms/Container'
 import { WordSearch } from '@/src/components/organisms/WordSearch'
 
@@ -11,10 +11,10 @@ export function Index() {
   // const { currentUser, loading } = useCurrentUser()
 
   return (
-    <Layout>
+    <LayoutTriangle>
       <Container>
         <WordSearch />
       </Container>
-    </Layout>
+    </LayoutTriangle>
   )
 }

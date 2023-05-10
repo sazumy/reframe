@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Header } from '@/src/components/organisms/Header/Header'
 
-export const Layout: React.FC = ({ children }) => {
+export const LayoutTriangle: React.FC = ({ children }) => {
   return (
     <>
       <div className="triangle_wrap">
