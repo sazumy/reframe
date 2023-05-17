@@ -17,4 +17,5 @@ test:
 
 production:
   <<: *default
+  url: <%= ENV['HEROKU_POSTGRESQL_BROWN_URL'] %>
   database: app_production
