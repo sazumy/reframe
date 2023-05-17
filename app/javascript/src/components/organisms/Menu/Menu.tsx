@@ -18,7 +18,7 @@ export const MenuTemplate: React.VFC<{
           </li>
           <li>
             <a href="/users/sign_out" data-method="delete">
-              Sign out
+              サインアウト
             </a>
           </li>
         </ul>
@@ -26,10 +26,10 @@ export const MenuTemplate: React.VFC<{
       {!currentUser && (
         <ul className="flex items-center justify-end p-6 bg-teal-500">
           <li className="mr-6">
-            <a href="/users/sign_in">Sign in</a>
+            <a href="/users/sign_in">サインイン</a>
           </li>
           <li>
-            <a href="/users/sign_up">Sign up</a>
+            <a href="/users/sign_up">ユーザー登録</a>
           </li>
         </ul>
       )}
