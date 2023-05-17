@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Person } from '@material-ui/icons'
 
 import { UserItemFragment } from '@/graphql/generated'
 import { useCurrentUser } from '@/src/hooks/currentUser'
@@ -14,6 +15,7 @@ export const HeaderContent: React.VFC<{
           <li className="mr-6">
             <Link to="#" className="text-white hover:text-yellow-800">
               {currentUser.email}
+              <Person />
             </Link>
           </li>
           <li>
