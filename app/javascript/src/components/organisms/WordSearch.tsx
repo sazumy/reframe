@@ -17,8 +17,7 @@ export const WordSearch: React.FC = ({ children }) => {
     event.preventDefault()
     const keyword = event.target.value
 
-    if (!keyword) return
-
+    console.log(keyword)
     setTimeout(() => {
       setQ({ kana: keyword, content: keyword })
     }, 700)
