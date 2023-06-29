@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import { NegativeWordSearchParams } from '@/graphql/generated'
@@ -7,21 +7,23 @@ import {
   KeywordBox,
   Word,
 } from '@/src/components/molecules/Keywords/KeywordBox'
+import { debounce } from 'lodash'
 
 export const WordSearch: React.FC = ({ children }) => {
   const [q, setQ] = useState<NegativeWordSearchParams | undefined>(undefined)
   const [selectedKeywords, setSelectedKeywords] = useState<Word[]>([])
   const history = useHistory()
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault()
-    const keyword = event.target.value
-
-    console.log(keyword)
-    setTimeout(() => {
-      setQ({ kana: keyword, content: keyword })
-    }, 700)
-  }
+  const debouncedEventHandler = useMemo(
+    () =>
+      debounce((event: React.ChangeEvent<HTMLInputElement>) => {
+        // 参考”https://softwaremill.com/debounce-on-inputs-in-react/
+        console.log(event.target.value) // event.target.valueの中身が空
+        const keyword = event.target.value
+        setQ({ kana: keyword, content: keyword })
+      }, 700),
+    []
+  )
 
   const handleDeleteBtnClick = (clickedWord: Word) => {
     if (selectedKeywords.includes(clickedWord)) {
@@ -45,7 +47,7 @@ export const WordSearch: React.FC = ({ children }) => {
         <h2>あなたはどんな性格？</h2>
         <Input
           placeholder="おとなしい、真面目、つまらない etc..."
-          onChange={(e) => handleChange(e)}
+          onChange={debouncedEventHandler}
           value={q?.content ?? ''}
         />
       </section>
