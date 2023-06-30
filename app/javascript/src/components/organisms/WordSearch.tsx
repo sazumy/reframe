@@ -7,6 +7,7 @@ import {
   KeywordBox,
   Word,
 } from '@/src/components/molecules/Keywords/KeywordBox'
+
 import { debounce } from 'lodash'
 
 export const WordSearch: React.FC = ({ children }) => {

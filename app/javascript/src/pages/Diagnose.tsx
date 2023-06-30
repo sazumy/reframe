@@ -8,7 +8,7 @@ import { Result } from '@/src/components/organisms/Result'
 export function Diagnose() {
   return (
     <LayoutFog>
-      <Header />
+      <Header pattern="header blue" />
       <MainContent>
         <Result />
       </MainContent>
