@@ -17,21 +17,26 @@ export const HeaderContent: React.VFC<
   return (
     <>
       {currentUser && (
-        <ul
-          className={`flex items-center justify-end p-6 bg-teal-500 ${pattern}`}
-        >
-          <li className="mr-6">
-            <Link to="#" className="">
-              {currentUser.email}
+        <div className={`dropdown ${pattern}`}>
+          <div className="dropdown__header">
+            <span className="link">{currentUser.email}</span>
+            <span className="icon">
               <Person />
-            </Link>
-          </li>
-          <li>
-            <a href="/users/sign_out" data-method="delete" className="">
-              サインアウト
-            </a>
-          </li>
-        </ul>
+            </span>
+          </div>
+          <ul className="dropdown__menu">
+            <li className="">
+              <Link to="/users/mypage" className="">
+                マイページ
+              </Link>
+            </li>
+            <li>
+              <a href="/users/sign_out" data-method="delete" className="">
+                サインアウト
+              </a>
+            </li>
+          </ul>
+        </div>
       )}
     </>
   )

@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import { Chat } from '../pages/Chat'
 import { Diagnose } from '../pages/Diagnose'
 import { Index } from '../pages/Index'
+import { MyPage } from '../pages/MyPage'
 
 type Props = object
 
@@ -20,6 +21,9 @@ export const Routes: React.FC<Props> = () => {
       </Route>
       <Route path="/diagnose">
         <Diagnose />
+      </Route>
+      <Route path="/users/mypage">
+        <MyPage />
       </Route>
     </Switch>
   )
