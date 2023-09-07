@@ -22,14 +22,14 @@ export const HeaderContent: React.VFC<
   return (
     <>
       {currentUser && (
-        <div className={`dropdown ${pattern}`}>
-          <div className="dropdown__header" onClick={() => handleVisibility()}>
-            <span className="link">{currentUser.email}</span>
-            <span className="icon">
+        <div className={`header ${pattern}`}>
+          <div className="dropdown" onClick={() => handleVisibility()}>
+            <span className="dropdown__icon">
               <Person />
             </span>
+            <span className="dropdown__link">{currentUser.email}</span>
+            {visibility && <DropDownMenu />}
           </div>
-          {visibility && <DropDownMenu />}
         </div>
       )}
     </>

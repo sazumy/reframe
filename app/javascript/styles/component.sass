@@ -27,15 +27,17 @@
   color: $white
   text-decoration: underline
 
-.dropdown
+.header
+  $header-padding: 1.5rem
   align-items: center
   display: flex
   justify-content: end
-  padding: 1.5rem
-  .dropdown__header
+  padding: $header-padding
+  .dropdown
     display: flex
     gap: 8px
-    .icon
+    position: relative
+    .dropdown__icon
       $icon-size: 32px
       display: inline-block
       border: solid 2px #fff
@@ -43,3 +45,10 @@
       height: $icon-size
       text-align: center
       width: $icon-size
+    .dropdown__menu
+      background: $white
+      border-radius: $border-radius-sm
+      color: $text-color
+      position: absolute
+      right: 0
+      top: $page-top-padding + $header-padding

@@ -1,18 +1,26 @@
 // 変数・sass関数・mixinなどがここに入ります
 
+// 色 color --------------------------
 $blue: #004C83
 $blue-30: rgba($blue, 0.3)
+$black: #333 // 仮の数字。Figma見て確かめる
 $yellow: #FCF7B0
 $white: #ffffff
+
+// 文字 text -----------------------------
+$text-color: $black
 
 $base-font-size: 16
 @function rem($pixels, $context: $base-font-size)
   @return calc($pixels / $context * 1rem)
 
+// 余白 margin & padding --------------------
 $page-bottom-padding: 3rem
 $page-left-padding: 2rem
 $page-top-padding: 1rem
 
+// ボーダー border -----------------------
+$border-radius-sm: 0.25rem
 
 // extend 専用クラス -----------------
 %btn-base
