@@ -28,7 +28,7 @@
   text-decoration: underline
 
 .header
-  $header-padding: 1.5rem
+  $header-padding: $component-padding-lg
   align-items: center
   display: flex
   justify-content: end
@@ -47,8 +47,20 @@
       width: $icon-size
     .dropdown__menu
       background: $white
+      border: $border-pale
       border-radius: $border-radius-sm
       color: $text-color
+      padding: $component-padding-sm
       position: absolute
       right: 0
       top: $page-top-padding + $header-padding
+      .dropdown__menu--list
+        display: block
+        padding: $component-padding-sm
+        &:not(:last-child)
+          border-bottom: $border-pale
+        .link
+          &:active
+            text-decoration: underline
+          &:hover
+            text-decoration: underline
