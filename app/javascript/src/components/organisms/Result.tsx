@@ -1,4 +1,5 @@
 import Edit from '@material-ui/icons/Edit'
+import dayjs from 'dayjs'
 import React, { useEffect, useState } from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
 
@@ -41,7 +42,8 @@ export const Result: React.FC = ({ children }) => {
   })
 
   useEffect(() => {
-    const today = new Date().toDateString()
+    // TOOD: 日本時間にする
+    const today = dayjs(new Date().toDateString()).format('YYYY-MM-DD')
     const defaultTitle = today + '_逆性格診断'
     setDiagnoseTitle(defaultTitle)
   }, [])
