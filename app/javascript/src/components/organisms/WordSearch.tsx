@@ -15,14 +15,15 @@ export const WordSearch: React.FC = ({ children }) => {
   const [selectedKeywords, setSelectedKeywords] = useState<Word[]>([])
   const history = useHistory()
 
-  const debouncedEventHandler = useMemo(
+  const DEBOUNCE_TIME_MS = 1000
+  // 参考：　https://softwaremill.com/debounce-on-inputs-in-react/
+  const onInputChange = useMemo(
     () =>
       debounce((event: React.ChangeEvent<HTMLInputElement>) => {
-        // 参考”https://softwaremill.com/debounce-on-inputs-in-react/
-        console.log(event.target.value) // event.target.valueの中身が空
         const keyword = event.target.value
+        console.log(keyword)
         setQ({ kana: keyword, content: keyword })
-      }, 700),
+      }, DEBOUNCE_TIME_MS),
     []
   )
 
@@ -48,8 +49,7 @@ export const WordSearch: React.FC = ({ children }) => {
         <h2>あなたはどんな性格？</h2>
         <Input
           placeholder="おとなしい、真面目、つまらない etc..."
-          onChange={debouncedEventHandler}
-          value={q?.content ?? ''}
+          onChange={onInputChange}
         />
       </section>
 
