@@ -21,7 +21,6 @@ export const WordSearch: React.FC = ({ children }) => {
     () =>
       debounce((event: React.ChangeEvent<HTMLInputElement>) => {
         const keyword = event.target.value
-        console.log(keyword)
         setQ({ kana: keyword, content: keyword })
       }, DEBOUNCE_TIME_MS),
     []
