@@ -41,9 +41,10 @@ export const Header: React.VFC<HeaderProps> = ({ pattern = 'text-white' }) => {
   if (currentUser == null) {
     return (
       <div className={`flex justify-end ${pattern}`}>
-        <a href="/users/sign_in" className="sign-in">
+        {/* TODO: マイページ機能を実装するときにコメントアウトを外す */}
+        {/* <a href="/users/sign_in" className="sign-in">
           サインイン
-        </a>
+        </a> */}
       </div>
     )
   }

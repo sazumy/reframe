@@ -59,7 +59,9 @@ export const Result: React.FC = ({ children }) => {
     <>
       <div className="diagnose__top-content container-sm">
         <h1>診断結果</h1>
-        <div className="diagnose__top-content--form">
+        {/* TODO: マイページ機能を実装するときにコメントアウトを外す */}
+
+        {/* <div className="diagnose__top-content--form">
           <h2 className="title">
             タイトル：
             {showInputForm ? (
@@ -80,7 +82,7 @@ export const Result: React.FC = ({ children }) => {
             className={enableEditButton ? 'button' : 'button disabled'}
             onClick={() => makeInputFormEditable()}
           />
-        </div>
+        </div> */}
       </div>
 
       <div className="diagnose__content">
@@ -110,12 +112,13 @@ export const Result: React.FC = ({ children }) => {
           >
             もう一度診断
           </button>
-          <button
+          {/* TODO: マイページ機能を実装するときにコメントアウトを外す */}
+          {/* <button
             className="btn btn-primary btn-lg"
             onClick={() => handleSaveBtnClick()}
           >
             結果を保存
-          </button>
+          </button> */}
         </div>
       </div>
     </>
