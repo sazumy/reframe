@@ -1,12 +1,13 @@
 import Edit from '@material-ui/icons/Edit'
 import dayjs from 'dayjs'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
 
 import { NegativeWord } from '@/graphql/generated'
 import { Input } from '@/src/components/atoms'
 import { CardParaphrase } from '@/src/components/organisms/CardParaphrase'
 import { generateYourKeywords } from '@/src/hooks/generateYourKeywords'
+import { debounce } from 'lodash'
 
 export const Result: React.FC = ({ children }) => {
   const location = useLocation()
@@ -29,13 +30,17 @@ export const Result: React.FC = ({ children }) => {
     setEnableEditButton(false)
   }
 
-  const handleDiagnoseTitleChange = (title: string) => {
-    setTimeout(() => {
-      setDiagnoseTitle(title)
-      setShowInputForm(false)
-      setEnableEditButton(true)
-    }, 2000)
-  }
+  const DEBOUNCE_TIME_MS = 1000
+  // 参考：　https://softwaremill.com/debounce-on-inputs-in-react/
+  const handleDiagnoseTitleChange = useMemo(
+    () =>
+      debounce((title: string) => {
+        setDiagnoseTitle(title)
+        setShowInputForm(false)
+        setEnableEditButton(true)
+      }, DEBOUNCE_TIME_MS),
+    []
+  )
 
   const yourKeywords = generateYourKeywords({
     negativeWords: selectedKeywords,
