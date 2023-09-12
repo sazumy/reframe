@@ -30,7 +30,7 @@ export const Result: React.FC = ({ children }) => {
     setEnableEditButton(false)
   }
 
-  const DEBOUNCE_TIME_MS = 1000
+  const DEBOUNCE_TIME_MS = 300
   // 参考：　https://softwaremill.com/debounce-on-inputs-in-react/
   const handleDiagnoseTitleChange = useMemo(
     () =>
@@ -65,7 +65,7 @@ export const Result: React.FC = ({ children }) => {
               <Input
                 className="mr-2"
                 defaultValue={diagnoseTitle}
-                onChange={(event) =>
+                onBlur={(event) =>
                   handleDiagnoseTitleChange(event.target.value)
                 }
               />
