@@ -35,6 +35,7 @@ export const Result: React.FC = ({ children }) => {
   const handleDiagnoseTitleChange = useMemo(
     () =>
       debounce((title: string) => {
+        // TODO: 変更されたよという知らせが欲しい。また、実際にstateが変わるのはフォーカスが離れた時なのでメソッド名変えたい
         setDiagnoseTitle(title)
         setShowInputForm(false)
         setEnableEditButton(true)
