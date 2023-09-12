@@ -85,6 +85,7 @@ export const WordSearch: React.FC = ({ children }) => {
         <button
           className="btn btn-primary btn-lg"
           onClick={() => handleSubmit()}
+          disabled={selectedKeywords.length ? false : true}
         >
           診断する
         </button>

@@ -1,3 +1,4 @@
+
 .btn
   @extend %btn-base
   &.btn-primary
@@ -6,6 +7,10 @@
     color: $white
     &:hover
       background-color: lighten($blue, 10%)
+    &:disabled
+      background-color: color.scale($blue, $saturation: -15%, $lightness: 50%)
+      border-color: color.scale($blue, $saturation: -15%, $lightness: 50%)
+
   &.btn-secondary
     background-color: $white
     border: solid 1px $blue
