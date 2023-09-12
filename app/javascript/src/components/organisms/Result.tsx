@@ -25,7 +25,7 @@ export const Result: React.FC = ({ children }) => {
     console.log('結果を保存')
   }
 
-  const handleEditTitleButtonClick = () => {
+  const makeInputFormEditable = () => {
     setShowInputForm(true)
     setEnableEditButton(false)
   }
@@ -70,12 +70,14 @@ export const Result: React.FC = ({ children }) => {
                 }
               />
             ) : (
-              <p className="title for-display">{diagnoseTitle}</p>
+              <p className="title for-display" onClick={makeInputFormEditable}>
+                {diagnoseTitle}
+              </p>
             )}
           </h2>
           <Edit
             className={enableEditButton ? 'button' : 'button disabled'}
-            onClick={() => handleEditTitleButtonClick()}
+            onClick={() => makeInputFormEditable()}
           />
         </div>
       </div>
