@@ -42,8 +42,9 @@ export const Result: React.FC = ({ children }) => {
   })
 
   useEffect(() => {
-    // TOOD: 日本時間にする
-    const today = dayjs(new Date().toDateString()).format('YYYY-MM-DD')
+    // NOTE: システムのタイムゾーンになっている可能性あり。余裕があれば確かめる
+    const now = new Date().toDateString()
+    const today = dayjs(now).format('YYYY-MM-DD')
     const defaultTitle = today + '_逆性格診断'
     setDiagnoseTitle(defaultTitle)
   }, [])
