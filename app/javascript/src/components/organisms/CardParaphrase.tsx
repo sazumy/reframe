@@ -53,6 +53,7 @@ export const CardParaphrase: React.FC<Props> = ({ keyword }) => {
         </div>
       </div>
 
+      {/* 「もっと見る」をクリックすると見える部分 */}
       {showFeature && (
         <>
           <div className="rephrasing__content">
@@ -74,6 +75,7 @@ export const CardParaphrase: React.FC<Props> = ({ keyword }) => {
         </>
       )}
 
+      {/* 最初から見える部分 */}
       {!showFeature && (
         <div
           className="rephrasing__expand-btn"
@@ -88,6 +90,7 @@ export const CardParaphrase: React.FC<Props> = ({ keyword }) => {
         </div>
       )}
 
+      {/* 「もっと見る」をクリックすると見える部分 */}
       {showFeature && (
         <div
           className="rephrasing__expand-btn"
