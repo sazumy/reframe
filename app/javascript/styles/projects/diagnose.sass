@@ -58,15 +58,21 @@
   max-width: 350px
   @extend %card-base
   .rephrasing__content
-    margin-bottom: 32px
-    .rephrasing__content--title
-      .negative-word
-        @include underline($blue-30)
-    .rephrasing__content--text
-      line-height: 2
-      .positive-word
-        @include underline($yellow)
+    display: none
+    &.active
+      display: block
+      margin-bottom: 32px
+      .rephrasing__content--title
+        .negative-word
+          @include underline($blue-30)
+      .rephrasing__content--text
+        line-height: 2
+        .positive-word
+          @include underline($yellow)
   .rephrasing__expand-btn
-    color: $blue
-    text-align: center
+    display: none
+    &.active
+      color: $blue
+      display: block
+      text-align: center
 

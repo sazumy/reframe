@@ -31,7 +31,7 @@ export const CardParaphrase: React.FC<Props> = ({ keyword }) => {
 
   return (
     <div className="rephrasing">
-      <div className="rephrasing__content">
+      <div className="rephrasing__content active">
         <h3 className="rephrasing__content--title">
           あなたは
           <span className="negative-word">{keyword.content}</span>
@@ -54,52 +54,41 @@ export const CardParaphrase: React.FC<Props> = ({ keyword }) => {
       </div>
 
       {/* 「もっと見る」をクリックすると見える部分 */}
-      {showFeature && (
-        <>
-          <div className="rephrasing__content">
-            <h3 className="rephrasing__content--title">
-              <span className="negative-word">{keyword.content}</span>
-              人は...
-            </h3>
-            {positiveWords?.map((positiveWord) => {
-              return (
-                <div
-                  className="rephrasing__content--text"
-                  key={positiveWord?.id}
-                >
-                  {positiveWord?.feature}
-                </div>
-              )
-            })}
-          </div>
-        </>
-      )}
+      <div className={`rephrasing__content ${showFeature && 'active'}`}>
+        <h3 className="rephrasing__content--title">
+          <span className="negative-word">{keyword.content}</span>
+          人は...
+        </h3>
+        {positiveWords?.map((positiveWord) => {
+          return (
+            <div className="rephrasing__content--text" key={positiveWord?.id}>
+              {positiveWord?.feature}
+            </div>
+          )
+        })}
+      </div>
 
       {/* 最初から見える部分 */}
-      {!showFeature && (
-        <div
-          className="rephrasing__expand-btn"
-          onClick={() => handleExpandMoreButtonClick()}
-        >
-          <p>
-            {keyword.content}人の
-            <br />
-            良いところをもっと見る
-          </p>
-          <ExpandMore />
-        </div>
-      )}
+      <div
+        className={`rephrasing__expand-btn ${!showFeature && 'active'}`}
+        onClick={() => handleExpandMoreButtonClick()}
+      >
+        <p>
+          {keyword.content}人の
+          <br />
+          良いところをもっと見る
+        </p>
+        <ExpandMore />
+      </div>
 
       {/* 「もっと見る」をクリックすると見える部分 */}
-      {showFeature && (
-        <div
-          className="rephrasing__expand-btn"
-          onClick={() => handleExpandLessButtonClick()}
-        >
-          <ExpandLess />
-          <p>閉じる</p>
-        </div>
-      )}
+      <div
+        className={`rephrasing__expand-btn ${showFeature && 'active'}`}
+        onClick={() => handleExpandLessButtonClick()}
+      >
+        <ExpandLess />
+        <p>閉じる</p>
+      </div>
     </div>
   )
 }
