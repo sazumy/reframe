@@ -18,11 +18,8 @@ export const CardParaphrase: React.FC<Props> = ({ keyword }) => {
   const [showFeature, setShowFeature] = useState<boolean>(false)
   const positiveWords = data?.negativeWord?.positiveWords.nodes
 
-  const handleExpandMoreButtonClick = () => {
-    setShowFeature(true)
-  }
-  const handleExpandLessButtonClick = () => {
-    setShowFeature(false)
+  const handleExpandButtonClick = () => {
+    setShowFeature(!showFeature)
   }
 
   // TODO: エラーとローディング中の表現追加
@@ -70,7 +67,7 @@ export const CardParaphrase: React.FC<Props> = ({ keyword }) => {
         </div>
       </div>
 
-      <div className="expand-btn" onClick={() => handleExpandMoreButtonClick()}>
+      <div className="expand-btn" onClick={() => handleExpandButtonClick()}>
         {/* 最初から見える部分 */}
         <p className={`expand-btn__text ${!showFeature && 'active'}`}>
           {keyword.content}人の
