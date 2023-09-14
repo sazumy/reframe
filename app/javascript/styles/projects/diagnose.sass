@@ -56,6 +56,7 @@
 
 .rephrasing
   $rephrasing-line-height: 2
+  $transition-duration: 0.3s
   @extend %card-base
   max-width: 350px
   .descriptions
@@ -72,7 +73,7 @@
       overflow: hidden
       margin: 0
       *
-        transition: all 0.3s ease-out
+        transition: all $transition-duration ease-out
         line-height: 0
         opacity: 0
         margin: 0
@@ -81,11 +82,13 @@
         *
           line-height: $rephrasing-line-height
           opacity: 1
-
-  .rephrasing__expand-btn
-    display: none
-    &.active
-      color: $blue
-      display: block
-      text-align: center
-
+  .expand-btn
+    color: $blue
+    text-align: center
+    .expand-btn__text
+      display: none
+      &.active
+        display: block
+    .expand-btn__icon.rotate
+      transform: rotate(180deg)
+      transition: $transition-duration

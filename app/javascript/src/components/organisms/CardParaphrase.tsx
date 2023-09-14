@@ -70,28 +70,16 @@ export const CardParaphrase: React.FC<Props> = ({ keyword }) => {
         </div>
       </div>
 
-      <div className="buttons">
+      <div className="expand-btn" onClick={() => handleExpandMoreButtonClick()}>
         {/* 最初から見える部分 */}
-        <div
-          className={`rephrasing__expand-btn ${!showFeature && 'active'}`}
-          onClick={() => handleExpandMoreButtonClick()}
-        >
-          <p>
-            {keyword.content}人の
-            <br />
-            良いところをもっと見る
-          </p>
-          <ExpandMore />
-        </div>
-
+        <p className={`expand-btn__text ${!showFeature && 'active'}`}>
+          {keyword.content}人の
+          <br />
+          良いところをもっと見る
+        </p>
         {/* 「もっと見る」をクリックすると見える部分 */}
-        <div
-          className={`rephrasing__expand-btn ${showFeature && 'active'}`}
-          onClick={() => handleExpandLessButtonClick()}
-        >
-          <ExpandLess />
-          <p>閉じる</p>
-        </div>
+        <p className={`expand-btn__text ${showFeature && 'active'}`}>閉じる</p>
+        <ExpandMore className={`expand-btn__icon ${showFeature && 'rotate'}`} />
       </div>
     </div>
   )
