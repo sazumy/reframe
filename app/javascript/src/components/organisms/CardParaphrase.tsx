@@ -31,63 +31,67 @@ export const CardParaphrase: React.FC<Props> = ({ keyword }) => {
 
   return (
     <div className="rephrasing">
-      <div className="rephrasing__content active">
-        <h3 className="rephrasing__content--title">
-          あなたは
-          <span className="negative-word">{keyword.content}</span>
-          のですね。
-        </h3>
-        <div className="rephrasing__content--text">
-          それはもしかしたら、
-          <br />
+      <div className="descriptions">
+        <div className="summary">
+          <h3 className="title">
+            あなたは
+            <span className="negative-word">{keyword.content}</span>
+            のですね。
+          </h3>
+          <div className="text">
+            それはもしかしたら、
+            <br />
+            {positiveWords?.map((positiveWord) => {
+              return (
+                <span className="positive-word" key={positiveWord?.id}>
+                  {positiveWord?.rentai}
+                </span>
+              )
+            })}
+            ことの
+            <br />
+            証拠なのかもしれません。
+          </div>
+        </div>
+
+        {/* 「もっと見る」をクリックすると見える部分 */}
+        <div className={`hidden-content ${showFeature && 'active'}`}>
+          <h3 className="rephrasing__content--title">
+            <span className="negative-word">{keyword.content}</span>
+            人は...
+          </h3>
           {positiveWords?.map((positiveWord) => {
             return (
-              <span className="positive-word" key={positiveWord?.id}>
-                {positiveWord?.rentai}
-              </span>
+              <div className="rephrasing__content--text" key={positiveWord?.id}>
+                {positiveWord?.feature}
+              </div>
             )
           })}
-          ことの
-          <br />
-          証拠なのかもしれません。
         </div>
       </div>
 
-      {/* 「もっと見る」をクリックすると見える部分 */}
-      <div className={`rephrasing__content ${showFeature && 'active'}`}>
-        <h3 className="rephrasing__content--title">
-          <span className="negative-word">{keyword.content}</span>
-          人は...
-        </h3>
-        {positiveWords?.map((positiveWord) => {
-          return (
-            <div className="rephrasing__content--text" key={positiveWord?.id}>
-              {positiveWord?.feature}
-            </div>
-          )
-        })}
-      </div>
+      <div className="buttons">
+        {/* 最初から見える部分 */}
+        <div
+          className={`rephrasing__expand-btn ${!showFeature && 'active'}`}
+          onClick={() => handleExpandMoreButtonClick()}
+        >
+          <p>
+            {keyword.content}人の
+            <br />
+            良いところをもっと見る
+          </p>
+          <ExpandMore />
+        </div>
 
-      {/* 最初から見える部分 */}
-      <div
-        className={`rephrasing__expand-btn ${!showFeature && 'active'}`}
-        onClick={() => handleExpandMoreButtonClick()}
-      >
-        <p>
-          {keyword.content}人の
-          <br />
-          良いところをもっと見る
-        </p>
-        <ExpandMore />
-      </div>
-
-      {/* 「もっと見る」をクリックすると見える部分 */}
-      <div
-        className={`rephrasing__expand-btn ${showFeature && 'active'}`}
-        onClick={() => handleExpandLessButtonClick()}
-      >
-        <ExpandLess />
-        <p>閉じる</p>
+        {/* 「もっと見る」をクリックすると見える部分 */}
+        <div
+          className={`rephrasing__expand-btn ${showFeature && 'active'}`}
+          onClick={() => handleExpandLessButtonClick()}
+        >
+          <ExpandLess />
+          <p>閉じる</p>
+        </div>
       </div>
     </div>
   )

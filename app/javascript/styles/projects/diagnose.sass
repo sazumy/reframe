@@ -55,20 +55,33 @@
         color: $blue-30
 
 .rephrasing
-  max-width: 350px
+  $rephrasing-line-height: 2
   @extend %card-base
-  .rephrasing__content
-    display: none
-    &.active
-      display: block
+  max-width: 350px
+  .descriptions
+    .summary
       margin-bottom: 32px
-      .rephrasing__content--title
+      .title
         .negative-word
           @include underline($blue-30)
-      .rephrasing__content--text
-        line-height: 2
+      .text
+        line-height: $rephrasing-line-height
         .positive-word
           @include underline($yellow)
+    .hidden-content
+      overflow: hidden
+      margin: 0
+      *
+        transition: all 0.3s ease-out
+        line-height: 0
+        opacity: 0
+        margin: 0
+      &.active
+        margin-bottom: 32px
+        *
+          line-height: $rephrasing-line-height
+          opacity: 1
+
   .rephrasing__expand-btn
     display: none
     &.active
